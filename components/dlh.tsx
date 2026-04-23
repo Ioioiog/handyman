@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { useT, LANG_META, type Lang } from "@/lib/i18n";
 
 /* ─────────────────── COLORS ─────────────────── */
 const C = {
@@ -18,8 +19,15 @@ const C = {
 export function TopBar() { return null; }
 
 export function Navbar() {
-  const links = ["Home", "Services", "About Us", "Reviews", "Contact"];
+  const { t } = useT();
   const [open, setOpen] = React.useState(false);
+  const navLinks: { key: string; label: string; href: string }[] = [
+    { key: "home", label: t.nav.home, href: "/" },
+    { key: "services", label: t.nav.services, href: "/services" },
+    { key: "about", label: t.nav.about, href: "/#aboutus" },
+    { key: "reviews", label: t.nav.reviews, href: "/#reviews" },
+    { key: "contact", label: t.nav.contact, href: "/#contact" },
+  ];
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0F1A]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
@@ -28,16 +36,14 @@ export function Navbar() {
           <span className="text-[10px] font-bold uppercase leading-tight tracking-widest text-white sm:text-[11px]">Diligence<br/>Local Handyman</span>
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
-          {links.map((l) => {
-            const href = l === "Services" ? "/services" : l === "Home" ? "/" : `/#${l.toLowerCase().replace(/\s/g,"")}`;
-            return (
-              <a key={l} href={href} className="text-[13px] font-semibold text-gray-300 transition hover:text-[#FFC300]">{l}</a>
-            );
-          })}
+        <nav className="hidden items-center gap-6 lg:flex">
+          {navLinks.map((l) => (
+            <a key={l.key} href={l.href} className="text-[13px] font-semibold text-gray-300 transition hover:text-[#FFC300]">{l.label}</a>
+          ))}
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <LanguageSwitcher />
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
             className="hidden md:inline-flex items-center gap-2 rounded-full border-2 border-[#FFC300] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#FFC300] hover:text-black lg:px-5">
             <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
@@ -50,13 +56,10 @@ export function Navbar() {
 
       {open && (
         <div className="border-t border-white/10 bg-[#0B0F1A] px-5 pb-6 pt-4 lg:hidden">
-          {links.map((l) => {
-            const href = l === "Services" ? "/services" : l === "Home" ? "/" : `/#${l.toLowerCase().replace(/\s/g,"")}`;
-            return (
-              <a key={l} href={href} onClick={() => setOpen(false)}
-                className="block py-3 text-sm font-semibold text-gray-300 transition hover:text-[#FFC300]">{l}</a>
-            );
-          })}
+          {navLinks.map((l) => (
+            <a key={l.key} href={l.href} onClick={() => setOpen(false)}
+              className="block py-3 text-sm font-semibold text-gray-300 transition hover:text-[#FFC300]">{l.label}</a>
+          ))}
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
             className="mt-4 flex items-center justify-center gap-2 rounded-full bg-[#FFC300] py-3 text-sm font-bold text-black">
             <WhatsAppSVG cls="h-4 w-4" /> WhatsApp +5999 511 2097
@@ -67,36 +70,81 @@ export function Navbar() {
   );
 }
 
+/* ── Language Switcher ── */
+function LanguageSwitcher() {
+  const { lang, setLang } = useT();
+  const [open, setOpen] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    function onClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  return (
+    <div ref={ref} className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        aria-label="Change language"
+        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[.03] px-3 py-2 text-xs font-bold text-white transition hover:border-[#FFC300]/50 hover:bg-white/5"
+      >
+        <span className="text-sm leading-none">{LANG_META[lang].flag}</span>
+        <span className="tracking-wider">{LANG_META[lang].label}</span>
+        <svg viewBox="0 0 24 24" className={`h-3 w-3 transition ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-white/10 bg-[#111627] shadow-2xl">
+          {(Object.keys(LANG_META) as Lang[]).map((code) => (
+            <button
+              key={code}
+              onClick={() => { setLang(code); setOpen(false); }}
+              className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition hover:bg-white/5 ${lang === code ? "bg-white/[.03] text-[#FFC300]" : "text-gray-300"}`}
+            >
+              <span className="text-base leading-none">{LANG_META[code].flag}</span>
+              <span className="font-semibold">{LANG_META[code].name}</span>
+              {lang === code && <span className="ml-auto text-[#FFC300]">✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ─────────────────── HERO ─────────────────── */
 export function Hero() {
+  const { t } = useT();
   return (
     <section id="home" className="relative bg-[#0B0F1A]">
       <div className="relative w-full overflow-hidden">
-        <img src="/hero.png" alt="Diligence Local Handyman — Cars, Jetski, Quad Rentals & Repair Services in Curaçao"
+        <img src="/hero.png" alt="Diligence Local Handyman"
           className="w-full h-auto min-h-[360px] sm:min-h-[420px] object-cover object-center" />
 
-        {/* Gradient — stronger on mobile so text is readable */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/60 to-transparent sm:via-transparent pointer-events-none" />
 
-        {/* Text + CTA — full width on mobile (centered), bottom-right on desktop */}
         <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-6 sm:left-auto sm:w-1/2 sm:px-6 sm:pb-12 lg:px-16 sm:text-right">
-          <p className="text-[9px] font-bold uppercase tracking-[.25em] text-[#FFC300] sm:text-xs sm:tracking-[.3em]">Repairs · Painting · Plumbing · Electrical</p>
+          <p className="text-[9px] font-bold uppercase tracking-[.25em] text-[#FFC300] sm:text-xs sm:tracking-[.3em]">{t.hero.eyebrow}</p>
           <h1 className="mt-2 text-[26px] font-black leading-[1.1] text-white sm:text-4xl lg:text-5xl">
-            We fix it.<br />
-            <span className="text-[#FFC300]">You enjoy it.</span>
+            {t.hero.title1}<br />
+            <span className="text-[#FFC300]">{t.hero.title2}</span>
           </h1>
           <p className="mt-2 max-w-sm text-xs leading-relaxed text-gray-300 sm:mt-3 sm:ml-auto sm:text-sm">
-            Your trusted local handyman for all jobs in Curaçao.
+            {t.hero.subtitle}
           </p>
 
           <div className="mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-6 sm:justify-end sm:gap-3">
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
               className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#FFC300] px-3.5 py-2.5 text-[12px] font-extrabold text-black shadow-lg shadow-yellow-500/25 transition hover:bg-[#FFD54F] hover:scale-[1.03] sm:flex-initial sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm">
-              <WhatsAppSVG cls="h-4 w-4 sm:h-5 sm:w-5" /> WhatsApp Us ›
+              <WhatsAppSVG cls="h-4 w-4 sm:h-5 sm:w-5" /> {t.hero.whatsapp} ›
             </a>
             <a href="#services"
               className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border-2 border-white/40 bg-white/10 px-3.5 py-2.5 text-[12px] font-bold text-white backdrop-blur-sm transition hover:border-[#FFC300] hover:text-[#FFC300] sm:flex-initial sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm">
-              Our Services ›
+              {t.hero.services} ›
             </a>
           </div>
         </div>
@@ -121,10 +169,28 @@ export function SectionHeading({ eyebrow, title, description }: { eyebrow: strin
 
 /* ─────────────────── SERVICE CARD ─────────────────── */
 export function ServiceCard({ title, description, image }: { title: string; description: string; image: string }) {
+  const { t } = useT();
   return (
-    <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-      className="group block overflow-hidden rounded-2xl transition duration-300 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(255,195,0,.15)]">
-      <img src={image} alt={title} className="block w-full h-auto" />
+    <a
+      href="https://wa.me/59995112097"
+      target="_blank"
+      rel="noreferrer"
+      className="group flex flex-col overflow-hidden rounded-2xl border border-white/[.07] bg-black transition duration-300 hover:-translate-y-1 hover:border-[#FFC300]/30 hover:shadow-[0_8px_40px_rgba(255,195,0,.15)]"
+    >
+      <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-black">
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105"
+        />
+      </div>
+      <div className="flex flex-1 flex-col p-4 sm:p-5">
+        <h3 className="text-sm font-black leading-tight text-white sm:text-base">{title}</h3>
+        <p className="mt-1.5 flex-1 text-xs leading-relaxed text-gray-400">{description}</p>
+        <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#FFC300] transition group-hover:gap-2.5">
+          {t.services.learnMore} <span>›</span>
+        </div>
+      </div>
     </a>
   );
 }
@@ -148,20 +214,19 @@ export function TestimonialCard({ quote, name }: { quote: string; name: string }
 
 /* ─────────────────── FOOTER ─────────────────── */
 export function Footer() {
+  const { t } = useT();
   return (
     <footer id="contact" className="relative border-t border-white/10 bg-gradient-to-b from-[#060911] to-[#030508]">
-      {/* subtle gold top accent */}
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFC300]/40 to-transparent" />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-12 sm:py-16 lg:grid-cols-12 lg:px-8">
-        {/* Brand */}
         <div className="lg:col-span-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <span className="text-3xl font-black tracking-tight text-[#FFC300]">DLH</span>
             <span className="text-[11px] font-bold uppercase leading-tight tracking-widest text-white">Diligence<br/>Local Handyman</span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
-            Your trusted local handyman in Curaçao. Quality repairs, honest pricing, and fast response — every time.
+            {t.footer.tagline}
           </p>
           <div className="mt-6 flex gap-3">
             <SocialIconLink href="https://instagram.com/diligencelocalhandyman" label="Instagram">
@@ -179,31 +244,28 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Quick Links */}
         <div className="lg:col-span-2">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">Company</p>
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">{t.footer.company}</p>
           <ul className="space-y-3 text-sm text-gray-400">
-            <li><Link href="/" className="transition hover:text-[#FFC300]">Home</Link></li>
-            <li><Link href="/services" className="transition hover:text-[#FFC300]">Services</Link></li>
-            <li><a href="/#aboutus" className="transition hover:text-[#FFC300]">About Us</a></li>
-            <li><a href="/#reviews" className="transition hover:text-[#FFC300]">Reviews</a></li>
-            <li><a href="/#contact" className="transition hover:text-[#FFC300]">Contact</a></li>
+            <li><Link href="/" className="transition hover:text-[#FFC300]">{t.nav.home}</Link></li>
+            <li><Link href="/services" className="transition hover:text-[#FFC300]">{t.nav.services}</Link></li>
+            <li><a href="/#aboutus" className="transition hover:text-[#FFC300]">{t.nav.about}</a></li>
+            <li><a href="/#reviews" className="transition hover:text-[#FFC300]">{t.nav.reviews}</a></li>
+            <li><a href="/#contact" className="transition hover:text-[#FFC300]">{t.nav.contact}</a></li>
           </ul>
         </div>
 
-        {/* Services */}
         <div className="lg:col-span-3">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">Services</p>
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">{t.footer.servicesCol}</p>
           <ul className="space-y-3 text-sm text-gray-400">
-            {["General Repairs","Painting","Plumbing","Electrical Work","Furniture Assembly","Air Conditioning"].map((s)=>(
+            {[t.services.items.repairs.title, t.services.items.painting.title, t.services.items.plumbing.title, t.services.items.electrical.title, t.services.items.furniture.title, t.services.items.ac.title].map((s)=>(
               <li key={s}><Link href="/services" className="transition hover:text-[#FFC300]">{s}</Link></li>
             ))}
           </ul>
         </div>
 
-        {/* Contact */}
         <div className="lg:col-span-3">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">Get in Touch</p>
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">{t.footer.contactCol}</p>
           <ul className="space-y-4 text-sm text-gray-400">
             <li>
               <a href="tel:+59995112097" className="group flex items-start gap-3 transition hover:text-white">
@@ -211,7 +273,7 @@ export function Footer() {
                   <PhoneIcon />
                 </span>
                 <span>
-                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">Call us</span>
+                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">{t.footer.callUs}</span>
                   <span className="font-semibold">+5999 511 2097</span>
                 </span>
               </a>
@@ -222,7 +284,7 @@ export function Footer() {
                   <MailIcon />
                 </span>
                 <span>
-                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">Email</span>
+                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">{t.footer.email}</span>
                   <span className="break-all font-semibold">Lokalhandyman84@gmail.com</span>
                 </span>
               </a>
@@ -232,8 +294,8 @@ export function Footer() {
                 <PinIcon />
               </span>
               <span>
-                <span className="block text-[10px] uppercase tracking-wider text-gray-500">Based in</span>
-                <span className="font-semibold text-gray-300">Willemstad, Curaçao</span>
+                <span className="block text-[10px] uppercase tracking-wider text-gray-500">{t.footer.basedIn}</span>
+                <span className="font-semibold text-gray-300">{t.footer.location}</span>
               </span>
             </li>
           </ul>
@@ -242,7 +304,7 @@ export function Footer() {
 
       <div className="border-t border-white/[.07]">
         <div className="mx-auto max-w-7xl px-5 py-6 text-center text-xs text-gray-500 lg:px-8">
-          © 2026 Diligence Local Handyman. All rights reserved. Built in Curaçao 🇨🇼
+          {t.footer.rights}
         </div>
       </div>
     </footer>

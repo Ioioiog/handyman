@@ -1,3 +1,4 @@
+"use client";
 import {
   Navbar,
   Hero,
@@ -6,32 +7,26 @@ import {
   Footer,
   FloatingWhatsApp,
 } from "@/components/dlh";
-
-/* ── Data ── */
-const services = [
-  { title: "General Repairs", desc: "Small or large jobs, we fix it right.", image: "/repair.png" },
-  { title: "Painting", desc: "Interior & exterior with a perfect finish.", image: "/paint.png" },
-  { title: "Plumbing", desc: "From leaks to full installations.", image: "/plumb.png" },
-  { title: "Electrical Work", desc: "Safe installations, repairs & maintenance.", image: "/electrical.png" },
-  { title: "Furniture Assembly", desc: "IKEA or custom — fast and precise.", image: "/furniture.png" },
-  { title: "Air Conditioning", desc: "Installation, maintenance & repair.", image: "/ac.png" },
-];
-
-const rentals = [
-  { title: "Car Rental", desc: "Reliable cars for exploring Curaçao.", image: "/car.png" },
-  { title: "Jetski Rental", desc: "Hit the waves with our jetskis.", image: "/jet.png" },
-  { title: "Quad Rental", desc: "Off-road adventures made easy.", image: "/quad.png" },
-];
-
-const testimonials = [
-  { quote: "Fast service, top quality, and very friendly. Highly recommended in Curaçao!", name: "Michael, Willemstad" },
-  { quote: "Very responsive on WhatsApp and easy to work with. Excellent local business.", name: "Sarah, Jan Thiel" },
-  { quote: "Fixed our AC and plumbing in one visit. Professional and fair pricing.", name: "David, Blue Bay" },
-];
+import { useT } from "@/lib/i18n";
 
 const locations = ["Willemstad", "Jan Thiel", "Blue Bay", "Westpunt", "Banda Abou", "Punda"];
 
 export default function Page() {
+  const { t } = useT();
+  const services = [
+    { ...t.services.items.repairs, image: "/repair.png" },
+    { ...t.services.items.painting, image: "/paint.png" },
+    { ...t.services.items.plumbing, image: "/plumb.png" },
+    { ...t.services.items.electrical, image: "/electrical.png" },
+    { ...t.services.items.furniture, image: "/furniture.png" },
+    { ...t.services.items.ac, image: "/ac.png" },
+  ];
+  const rentals = [
+    { ...t.rentals.items.car, image: "/car.png" },
+    { ...t.rentals.items.jet, image: "/jet.png" },
+    { ...t.rentals.items.quad, image: "/quad.png" },
+  ];
+  const testimonials = t.reviews.items;
   return (
     <main className="min-h-screen bg-[#0B0F1A] text-white">
       <Navbar />
@@ -43,13 +38,13 @@ export default function Page() {
           <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-10">
             {/* Left heading */}
             <div className="flex flex-col items-start">
-              <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Our Services</p>
+              <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.services.eyebrow}</p>
               <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
-                What can we help you with?
+                {t.services.heading}
               </h2>
               <a href="/services"
                 className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-[#FFC300]/40 px-6 py-2.5 text-xs font-bold text-white transition hover:border-[#FFC300] hover:text-[#FFC300]">
-                View All Services &amp; Prices &nbsp;›
+                {t.services.viewAll} &nbsp;›
               </a>
             </div>
 
@@ -68,12 +63,12 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-10">
             <div className="flex flex-col items-start">
-              <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Vehicle Rentals</p>
+              <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.rentals.eyebrow}</p>
               <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
-                Explore Curaçao your way
+                {t.rentals.heading}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-gray-400">
-                Cars, jetskis, and quads with local support &amp; WhatsApp booking.
+                {t.rentals.subtitle}
               </p>
             </div>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
@@ -91,18 +86,18 @@ export default function Page() {
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
             {/* Left */}
             <div className="rounded-2xl border border-white/[.07] bg-[#111627] p-6 sm:p-8 lg:p-10">
-              <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Why Choose Us?</p>
+              <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.why.eyebrow}</p>
               <h3 className="mt-4 text-3xl font-black leading-tight">
-                Local. Reliable.<br /><span className="text-[#FFC300]">Skilled.</span>
+                {t.why.title1}<br /><span className="text-[#FFC300]">{t.why.title2}</span>
               </h3>
               <p className="mt-4 text-sm leading-7 text-gray-400">
-                Diligence Local Handyman stands for quality, honesty, and clear communication. We treat your home or business like it&apos;s our own.
+                {t.why.body}
               </p>
               <ul className="mt-6 space-y-3">
-                {["Local expertise in Curaçao", "Clear pricing — no surprises", "Fast response times", "Friendly & professional service"].map((t) => (
-                  <li key={t} className="flex items-center gap-3 text-sm text-white">
+                {t.why.points.map((p) => (
+                  <li key={p} className="flex items-center gap-3 text-sm text-white">
                     <span className="inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#FFC300] text-[10px] font-black text-black">✓</span>
-                    {t}
+                    {p}
                   </li>
                 ))}
               </ul>
@@ -119,7 +114,7 @@ export default function Page() {
                   </div>
                 </div>
                 <div>
-                  <p className="text-sm font-bold text-white">Proudly serving all areas in Curaçao</p>
+                  <p className="text-sm font-bold text-white">{t.why.locations}</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {locations.map((l) => (
                       <span key={l} className="rounded-full bg-white/10 px-3 py-1 text-xs text-white backdrop-blur-sm">{l}</span>
@@ -135,11 +130,11 @@ export default function Page() {
       {/* ═══════ MORE REVIEWS ═══════ */}
       <section id="reviews" className="border-t border-white/[.06] bg-[#111627] py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Reviews</p>
-          <h2 className="mt-3 text-3xl font-black sm:text-4xl lg:text-5xl">What our <span className="text-[#FFC300]">clients say</span></h2>
+          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.reviews.eyebrow}</p>
+          <h2 className="mt-3 text-3xl font-black sm:text-4xl lg:text-5xl">{t.reviews.heading1} <span className="text-[#FFC300]">{t.reviews.heading2}</span></h2>
           <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-6 md:grid-cols-3">
-            {testimonials.map((t) => (
-              <TestimonialCard key={t.name} quote={t.quote} name={t.name} />
+            {testimonials.map((r) => (
+              <TestimonialCard key={r.name} quote={r.quote} name={r.name} />
             ))}
           </div>
         </div>
@@ -169,29 +164,28 @@ export default function Page() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#FFC300] opacity-75" />
                     <span className="relative inline-flex h-2 w-2 rounded-full bg-[#FFC300]" />
                   </span>
-                  Available Today
+                  {t.cta.badge}
                 </div>
                 <h2 className="mt-5 text-3xl font-black leading-tight sm:text-4xl lg:text-5xl">
-                  Ready to get your <br className="hidden sm:block" />
-                  <span className="bg-gradient-to-r from-[#FFC300] to-[#FFD54F] bg-clip-text text-transparent">job done right?</span>
+                  {t.cta.title1} <br className="hidden sm:block" />
+                  <span className="bg-gradient-to-r from-[#FFC300] to-[#FFD54F] bg-clip-text text-transparent">{t.cta.title2}</span>
                 </h2>
                 <p className="mt-4 max-w-xl text-sm leading-7 text-gray-400 sm:text-base">
-                  Get a free, no-obligation quote in minutes. Message us on WhatsApp with a photo and quick description — we&apos;ll get back to you fast with a clear price.
+                  {t.cta.body}
                 </p>
 
-                {/* trust badges */}
                 <div className="mt-6 grid grid-cols-3 gap-3 sm:gap-6 sm:max-w-md">
                   <div>
                     <div className="text-2xl font-black text-[#FFC300] sm:text-3xl">500+</div>
-                    <div className="mt-1 text-[11px] uppercase tracking-wider text-gray-500">Jobs done</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-wider text-gray-500">{t.cta.stats.jobs}</div>
                   </div>
                   <div>
                     <div className="text-2xl font-black text-[#FFC300] sm:text-3xl">5★</div>
-                    <div className="mt-1 text-[11px] uppercase tracking-wider text-gray-500">Avg rating</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-wider text-gray-500">{t.cta.stats.rating}</div>
                   </div>
                   <div>
                     <div className="text-2xl font-black text-[#FFC300] sm:text-3xl">24h</div>
-                    <div className="mt-1 text-[11px] uppercase tracking-wider text-gray-500">Response</div>
+                    <div className="mt-1 text-[11px] uppercase tracking-wider text-gray-500">{t.cta.stats.response}</div>
                   </div>
                 </div>
               </div>
@@ -207,7 +201,7 @@ export default function Page() {
                   <svg viewBox="0 0 24 24" className="h-5 w-5 fill-current">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a3.04 3.04 0 00-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.875 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
                   </svg>
-                  WhatsApp Us Now
+                  {t.cta.whatsapp}
                   <span className="transition group-hover:translate-x-1">›</span>
                 </a>
                 <a
@@ -220,7 +214,7 @@ export default function Page() {
                   +5999 511 2097
                 </a>
                 <p className="mt-1 text-center text-[11px] leading-relaxed text-gray-500">
-                  Free quote · No obligation · Fast response
+                  {t.cta.disclaimer}
                 </p>
               </div>
             </div>

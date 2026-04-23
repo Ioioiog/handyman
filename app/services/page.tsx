@@ -1,15 +1,17 @@
+"use client";
 import Link from "next/link";
 import { Navbar, Footer, FloatingWhatsApp } from "@/components/dlh";
+import { useT } from "@/lib/i18n";
 
 /* ── Pricing data ── */
 type Item = { name: string; price: string };
 type Category = { title: string; image: string; intro: string; items: Item[] };
 
-const handyman: Category[] = [
+const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   {
-    title: "General Repairs",
+    title: t.services.items.repairs.title,
     image: "/repair.png",
-    intro: "Small and large fixes around the home or business.",
+    intro: t.services.items.repairs.desc,
     items: [
       { name: "Minor repair (up to 1 hour)", price: "From ƒ60" },
       { name: "Standard repair (up to 3 hours)", price: "From ƒ150" },
@@ -18,9 +20,9 @@ const handyman: Category[] = [
     ],
   },
   {
-    title: "Painting",
+    title: t.services.items.painting.title,
     image: "/paint.png",
-    intro: "Clean, professional interior and exterior paintwork.",
+    intro: t.services.items.painting.desc,
     items: [
       { name: "Single room (walls, 1 coat)", price: "From ƒ350" },
       { name: "Single room (walls, 2 coats)", price: "From ƒ500" },
@@ -29,9 +31,9 @@ const handyman: Category[] = [
     ],
   },
   {
-    title: "Plumbing",
+    title: t.services.items.plumbing.title,
     image: "/plumb.png",
-    intro: "From leaks to full installations — licensed work.",
+    intro: t.services.items.plumbing.desc,
     items: [
       { name: "Leak diagnosis & fix", price: "From ƒ120" },
       { name: "Toilet / sink installation", price: "From ƒ200" },
@@ -40,9 +42,9 @@ const handyman: Category[] = [
     ],
   },
   {
-    title: "Electrical Work",
+    title: t.services.items.electrical.title,
     image: "/electrical.png",
-    intro: "Safe installations, repairs and maintenance.",
+    intro: t.services.items.electrical.desc,
     items: [
       { name: "Outlet / switch replacement", price: "From ƒ80" },
       { name: "Light fixture installation", price: "From ƒ120" },
@@ -51,9 +53,9 @@ const handyman: Category[] = [
     ],
   },
   {
-    title: "Furniture Assembly",
+    title: t.services.items.furniture.title,
     image: "/furniture.png",
-    intro: "IKEA or custom — fast and precise assembly.",
+    intro: t.services.items.furniture.desc,
     items: [
       { name: "Small item (chair, stool, shelf)", price: "From ƒ60" },
       { name: "Medium item (desk, dresser)", price: "From ƒ120" },
@@ -62,9 +64,9 @@ const handyman: Category[] = [
     ],
   },
   {
-    title: "Air Conditioning",
+    title: t.services.items.ac.title,
     image: "/ac.png",
-    intro: "Installation, maintenance and repair.",
+    intro: t.services.items.ac.desc,
     items: [
       { name: "AC cleaning & service", price: "From ƒ150" },
       { name: "AC installation (split unit)", price: "From ƒ500" },
@@ -74,11 +76,11 @@ const handyman: Category[] = [
   },
 ];
 
-const rentals: Category[] = [
+const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   {
-    title: "Car Rental",
+    title: t.rentals.items.car.title,
     image: "/car.png",
-    intro: "Reliable cars for exploring all of Curaçao.",
+    intro: t.rentals.items.car.desc,
     items: [
       { name: "Economy car — daily", price: "From ƒ80/day" },
       { name: "Economy car — weekly", price: "From ƒ500/week" },
@@ -87,9 +89,9 @@ const rentals: Category[] = [
     ],
   },
   {
-    title: "Jetski Rental",
+    title: t.rentals.items.jet.title,
     image: "/jet.png",
-    intro: "Hit the waves with our well-maintained jetskis.",
+    intro: t.rentals.items.jet.desc,
     items: [
       { name: "30 minutes", price: "From ƒ150" },
       { name: "1 hour", price: "From ƒ250" },
@@ -98,9 +100,9 @@ const rentals: Category[] = [
     ],
   },
   {
-    title: "Quad Rental",
+    title: t.rentals.items.quad.title,
     image: "/quad.png",
-    intro: "Off-road adventures made easy.",
+    intro: t.rentals.items.quad.desc,
     items: [
       { name: "1 hour", price: "From ƒ120" },
       { name: "Half-day (4 hours)", price: "From ƒ350" },
@@ -109,6 +111,20 @@ const rentals: Category[] = [
     ],
   },
 ];
+
+function FreeQuoteBtn() {
+  const { t } = useT();
+  return (
+    <a
+      href="https://wa.me/59995112097"
+      target="_blank"
+      rel="noreferrer"
+      className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-5 py-2.5 text-xs font-extrabold text-black transition hover:bg-[#FFD54F]"
+    >
+      {t.servicesPage.freeQuote} ›
+    </a>
+  );
+}
 
 function PriceCard({ cat }: { cat: Category }) {
   return (
@@ -127,44 +143,39 @@ function PriceCard({ cat }: { cat: Category }) {
             </li>
           ))}
         </ul>
-        <a
-          href="https://wa.me/59995112097"
-          target="_blank"
-          rel="noreferrer"
-          className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-5 py-2.5 text-xs font-extrabold text-black transition hover:bg-[#FFD54F]"
-        >
-          Get a Free Quote ›
-        </a>
+        <FreeQuoteBtn />
       </div>
     </div>
   );
 }
 
 export default function ServicesPage() {
+  const { t } = useT();
+  const handyman = handymanData(t);
+  const rentals = rentalsData(t);
   return (
     <main className="min-h-screen bg-[#0B0F1A] text-white">
       <Navbar />
 
-      {/* ── Page header ── */}
       <section className="border-b border-white/[.06] bg-[#111627] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="flex items-center gap-2 text-xs font-medium text-gray-400">
-            <Link href="/" className="hover:text-[#FFC300]">Home</Link>
+            <Link href="/" className="hover:text-[#FFC300]">{t.nav.home}</Link>
             <span>›</span>
-            <span className="text-white">Services</span>
+            <span className="text-white">{t.servicesPage.breadcrumb}</span>
           </div>
-          <p className="mt-5 text-xs font-bold uppercase tracking-[.3em] text-[#FFC300] sm:mt-6">All Services</p>
+          <p className="mt-5 text-xs font-bold uppercase tracking-[.3em] text-[#FFC300] sm:mt-6">{t.servicesPage.eyebrow}</p>
           <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
-            Everything we do, <br /><span className="text-[#FFC300]">in one place.</span>
+            {t.servicesPage.title1} <br /><span className="text-[#FFC300]">{t.servicesPage.title2}</span>
           </h1>
           <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-300 sm:mt-5 sm:text-base">
-            Transparent pricing for all our handyman services and rentals in Curaçao. All prices are starting points — WhatsApp us any time for a free, no-obligation estimate.
+            {t.servicesPage.subtitle}
           </p>
           <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-6 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]"
             >
-              💬 WhatsApp Us Now ›
+              💬 {t.common.whatsappNow} ›
             </a>
             <a href="tel:+59995112097"
               className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 px-6 py-3.5 text-sm font-bold text-white transition hover:border-white"
@@ -175,11 +186,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Handyman Services ── */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Handyman Services</p>
-          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">Home &amp; business repairs</h2>
+          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.services.eyebrow}</p>
+          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">{t.servicesPage.handyHeading}</h2>
           <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {handyman.map((c) => (
               <PriceCard key={c.title} cat={c} />
@@ -188,11 +198,10 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Vehicle Rentals ── */}
       <section className="border-t border-white/[.06] bg-[#111627] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Vehicle Rentals</p>
-          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">Explore Curaçao your way</h2>
+          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.rentals.eyebrow}</p>
+          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">{t.servicesPage.rentalsHeading}</h2>
           <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {rentals.map((c) => (
               <PriceCard key={c.title} cat={c} />
@@ -201,18 +210,15 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── Pricing note ── */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-5 lg:px-8">
           <div className="rounded-3xl border border-white/[.07] bg-[#111627] p-6 sm:p-8 lg:p-12">
-            <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Pricing Notes</p>
-            <h3 className="mt-3 text-2xl font-black sm:text-3xl">How our pricing works</h3>
+            <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.servicesPage.pricingEyebrow}</p>
+            <h3 className="mt-3 text-2xl font-black sm:text-3xl">{t.servicesPage.pricingHeading}</h3>
             <ul className="mt-6 space-y-3 text-sm leading-7 text-gray-300">
-              <li className="flex gap-3"><span className="text-[#FFC300]">✓</span> All prices are in Antillean guilders (ƒ) and are starting points.</li>
-              <li className="flex gap-3"><span className="text-[#FFC300]">✓</span> Final quotes depend on job size, complexity and material costs.</li>
-              <li className="flex gap-3"><span className="text-[#FFC300]">✓</span> Free quotes via WhatsApp — just send us a photo and description.</li>
-              <li className="flex gap-3"><span className="text-[#FFC300]">✓</span> We serve all areas in Curaçao — some zones may include a small travel fee.</li>
-              <li className="flex gap-3"><span className="text-[#FFC300]">✓</span> Weekend & emergency call-out rates may apply.</li>
+              {t.servicesPage.pricingPoints.map((p) => (
+                <li key={p} className="flex gap-3"><span className="text-[#FFC300]">✓</span> {p}</li>
+              ))}
             </ul>
             <div className="mt-8">
               <a
@@ -221,7 +227,7 @@ export default function ServicesPage() {
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-[#FFC300] px-7 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]"
               >
-                💬 Get My Free Quote ›
+                💬 {t.servicesPage.myFreeQuote} ›
               </a>
             </div>
           </div>
