@@ -49,7 +49,7 @@ export default function Page() {
               </h2>
               <a href="/services"
                 className="mt-6 inline-flex items-center gap-2 rounded-full border-2 border-[#FFC300]/40 px-6 py-2.5 text-xs font-bold text-white transition hover:border-[#FFC300] hover:text-[#FFC300]">
-                View All Services &nbsp;›
+                View All Services &amp; Prices &nbsp;›
               </a>
             </div>
 

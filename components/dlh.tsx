@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 /* ─────────────────── COLORS ─────────────────── */
 const C = {
@@ -22,10 +23,10 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0F1A]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
-        <a href="/" className="flex items-center gap-2 sm:gap-2.5">
+        <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
           <span className="text-xl font-black tracking-tight text-[#FFC300] sm:text-2xl">DLH</span>
           <span className="text-[10px] font-bold uppercase leading-tight tracking-widest text-white sm:text-[11px]">Diligence<br/>Local Handyman</span>
-        </a>
+        </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
           {links.map((l) => {
