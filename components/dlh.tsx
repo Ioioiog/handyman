@@ -80,7 +80,7 @@ export function Hero() {
 
         {/* Text + CTA — full width on mobile (centered), bottom-right on desktop */}
         <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-6 sm:left-auto sm:w-1/2 sm:px-6 sm:pb-12 lg:px-16 sm:text-right">
-          <p className="text-[9px] font-bold uppercase tracking-[.25em] text-[#FFC300] sm:text-xs sm:tracking-[.3em]">Cars · Jetski · Quad · Repairs</p>
+          <p className="text-[9px] font-bold uppercase tracking-[.25em] text-[#FFC300] sm:text-xs sm:tracking-[.3em]">Repairs · Painting · Plumbing · Electrical</p>
           <h1 className="mt-2 text-[26px] font-black leading-[1.1] text-white sm:text-4xl lg:text-5xl">
             We fix it.<br />
             <span className="text-[#FFC300]">You enjoy it.</span>
