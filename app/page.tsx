@@ -53,8 +53,8 @@ export default function Page() {
               </a>
             </div>
 
-            {/* Right cards — 6 in a row on large screens */}
-            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {/* Right cards — 3 per row */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {services.map((s) => (
                 <ServiceCard key={s.title} title={s.title} description={s.desc} image={s.image} />
               ))}
