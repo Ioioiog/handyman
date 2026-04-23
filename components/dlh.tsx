@@ -89,13 +89,13 @@ export function Hero() {
             Your trusted local handyman for all jobs in Curaçao.
           </p>
 
-          <div className="mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-3">
+          <div className="mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-6 sm:justify-end sm:gap-3">
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FFC300] px-6 py-3 text-sm font-extrabold text-black shadow-lg shadow-yellow-500/25 transition hover:bg-[#FFD54F] hover:scale-[1.03] sm:w-auto sm:px-7 sm:py-3.5">
-              <WhatsAppSVG cls="h-5 w-5" /> WhatsApp Us Now ›
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#FFC300] px-3.5 py-2.5 text-[12px] font-extrabold text-black shadow-lg shadow-yellow-500/25 transition hover:bg-[#FFD54F] hover:scale-[1.03] sm:flex-initial sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm">
+              <WhatsAppSVG cls="h-4 w-4 sm:h-5 sm:w-5" /> WhatsApp Us ›
             </a>
             <a href="#services"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:border-[#FFC300] hover:text-[#FFC300] sm:w-auto sm:px-7 sm:py-3.5">
+              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border-2 border-white/40 bg-white/10 px-3.5 py-2.5 text-[12px] font-bold text-white backdrop-blur-sm transition hover:border-[#FFC300] hover:text-[#FFC300] sm:flex-initial sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm">
               Our Services ›
             </a>
           </div>
