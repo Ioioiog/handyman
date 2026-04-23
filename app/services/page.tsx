@@ -113,10 +113,10 @@ const rentals: Category[] = [
 function PriceCard({ cat }: { cat: Category }) {
   return (
     <div className="flex flex-col overflow-hidden rounded-2xl border border-white/[.07] bg-[#111627] transition hover:-translate-y-1 hover:border-[#FFC300]/30 hover:shadow-[0_8px_40px_rgba(255,195,0,.1)]">
-      <div className="flex h-40 items-center justify-center overflow-hidden border-b border-white/[.05] bg-[#0B0F1A]">
+      <div className="flex h-36 items-center justify-center overflow-hidden border-b border-white/[.05] bg-[#0B0F1A] sm:h-40">
         <img src={cat.image} alt={cat.title} className="h-full w-auto object-contain" />
       </div>
-      <div className="flex flex-1 flex-col p-6">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
         <h3 className="text-lg font-black text-white">{cat.title}</h3>
         <p className="mt-1 text-xs leading-relaxed text-gray-400">{cat.intro}</p>
         <ul className="mt-5 flex-1 space-y-3 border-t border-white/[.05] pt-4">
@@ -146,32 +146,28 @@ export default function ServicesPage() {
       <Navbar />
 
       {/* ── Page header ── */}
-      <section className="border-b border-white/[.06] bg-[#111627] py-20">
+      <section className="border-b border-white/[.06] bg-[#111627] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="flex items-center gap-2 text-xs font-medium text-gray-400">
             <Link href="/" className="hover:text-[#FFC300]">Home</Link>
             <span>›</span>
             <span className="text-white">Services</span>
           </div>
-          <p className="mt-6 text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">All Services</p>
-          <h1 className="mt-3 text-4xl font-black leading-tight sm:text-6xl">
+          <p className="mt-5 text-xs font-bold uppercase tracking-[.3em] text-[#FFC300] sm:mt-6">All Services</p>
+          <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
             Everything we do, <br /><span className="text-[#FFC300]">in one place.</span>
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-7 text-gray-300">
-            Transparent pricing for all our handyman services and rentals in Curaçao. All prices are starting points — final quote depends on the job. WhatsApp us any time for a free, no-obligation estimate.
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-300 sm:mt-5 sm:text-base">
+            Transparent pricing for all our handyman services and rentals in Curaçao. All prices are starting points — WhatsApp us any time for a free, no-obligation estimate.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://wa.me/59995112097"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#FFC300] px-6 py-3 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]"
+          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
+            <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-6 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]"
             >
               💬 WhatsApp Us Now ›
             </a>
-            <a
-              href="tel:+59995112097"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/20 px-6 py-3 text-sm font-bold text-white transition hover:border-white"
+            <a href="tel:+59995112097"
+              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 px-6 py-3.5 text-sm font-bold text-white transition hover:border-white"
             >
               📞 +5999 511 2097
             </a>
@@ -180,11 +176,11 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Handyman Services ── */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Handyman Services</p>
-          <h2 className="mt-3 text-3xl font-black sm:text-4xl">Home & business repairs</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">Home &amp; business repairs</h2>
+          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {handyman.map((c) => (
               <PriceCard key={c.title} cat={c} />
             ))}
@@ -193,11 +189,11 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Vehicle Rentals ── */}
-      <section className="border-t border-white/[.06] bg-[#111627] py-20">
+      <section className="border-t border-white/[.06] bg-[#111627] py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Vehicle Rentals</p>
-          <h2 className="mt-3 text-3xl font-black sm:text-4xl">Explore Curaçao your way</h2>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">Explore Curaçao your way</h2>
+          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {rentals.map((c) => (
               <PriceCard key={c.title} cat={c} />
             ))}
@@ -206,9 +202,9 @@ export default function ServicesPage() {
       </section>
 
       {/* ── Pricing note ── */}
-      <section className="py-20">
+      <section className="py-12 sm:py-16 lg:py-20">
         <div className="mx-auto max-w-4xl px-5 lg:px-8">
-          <div className="rounded-3xl border border-white/[.07] bg-[#111627] p-8 lg:p-12">
+          <div className="rounded-3xl border border-white/[.07] bg-[#111627] p-6 sm:p-8 lg:p-12">
             <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Pricing Notes</p>
             <h3 className="mt-3 text-2xl font-black sm:text-3xl">How our pricing works</h3>
             <ul className="mt-6 space-y-3 text-sm leading-7 text-gray-300">

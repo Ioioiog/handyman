@@ -21,10 +21,10 @@ export function Navbar() {
   const [open, setOpen] = React.useState(false);
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0F1A]/95 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 lg:px-8">
-        <a href="#" className="flex items-center gap-2.5">
-          <span className="text-2xl font-black tracking-tight text-[#FFC300]">DLH</span>
-          <span className="hidden text-[11px] font-bold uppercase leading-tight tracking-widest text-white sm:block">Diligence<br/>Local Handyman</span>
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
+        <a href="/" className="flex items-center gap-2 sm:gap-2.5">
+          <span className="text-xl font-black tracking-tight text-[#FFC300] sm:text-2xl">DLH</span>
+          <span className="text-[10px] font-bold uppercase leading-tight tracking-widest text-white sm:text-[11px]">Diligence<br/>Local Handyman</span>
         </a>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -36,12 +36,12 @@ export function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full border-2 border-[#FFC300] px-5 py-2 text-sm font-bold text-white transition hover:bg-[#FFC300] hover:text-black">
+            className="hidden md:inline-flex items-center gap-2 rounded-full border-2 border-[#FFC300] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#FFC300] hover:text-black lg:px-5">
             <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
           </a>
-          <button onClick={() => setOpen(!open)} className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-white lg:hidden">
+          <button onClick={() => setOpen(!open)} aria-label="Menu" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 text-white lg:hidden">
             <span className="text-xl">{open ? "✕" : "☰"}</span>
           </button>
         </div>
@@ -72,29 +72,29 @@ export function Hero() {
     <section id="home" className="relative bg-[#0B0F1A]">
       <div className="relative w-full overflow-hidden">
         <img src="/hero.png" alt="Diligence Local Handyman — Cars, Jetski, Quad Rentals & Repair Services in Curaçao"
-          className="w-full h-auto min-h-[420px] object-cover object-center" />
+          className="w-full h-auto min-h-[360px] sm:min-h-[420px] object-cover object-center" />
 
-        {/* Bottom fade only */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-transparent to-transparent pointer-events-none" />
+        {/* Gradient — stronger on mobile so text is readable */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/60 to-transparent sm:via-transparent pointer-events-none" />
 
-        {/* Text + CTA — pinned to bottom-right, never covering the handyman */}
-        <div className="absolute bottom-0 right-0 z-10 w-full sm:w-1/2 px-6 pb-8 sm:pb-12 lg:px-16 sm:text-right">
-          <p className="text-[10px] font-bold uppercase tracking-[.3em] text-[#FFC300] sm:text-xs">Cars · Jetski · Quad Rentals · Repair Services</p>
-          <h1 className="mt-2 text-2xl font-black leading-[1.1] text-white sm:text-4xl lg:text-5xl">
+        {/* Text + CTA — full width on mobile (centered), bottom-right on desktop */}
+        <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-6 sm:left-auto sm:w-1/2 sm:px-6 sm:pb-12 lg:px-16 sm:text-right">
+          <p className="text-[9px] font-bold uppercase tracking-[.25em] text-[#FFC300] sm:text-xs sm:tracking-[.3em]">Cars · Jetski · Quad · Repairs</p>
+          <h1 className="mt-2 text-[26px] font-black leading-[1.1] text-white sm:text-4xl lg:text-5xl">
             We fix it.<br />
             <span className="text-[#FFC300]">You enjoy it.</span>
           </h1>
-          <p className="mt-3 max-w-sm text-xs leading-relaxed text-gray-300 sm:ml-auto sm:text-sm">
+          <p className="mt-2 max-w-sm text-xs leading-relaxed text-gray-300 sm:mt-3 sm:ml-auto sm:text-sm">
             Your trusted local handyman for all jobs in Curaçao.
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3 sm:mt-6 sm:justify-end">
+          <div className="mt-4 flex flex-col gap-2.5 sm:mt-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end sm:gap-3">
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#FFC300] px-6 py-3 text-xs font-extrabold text-black shadow-lg shadow-yellow-500/25 transition hover:bg-[#FFD54F] hover:scale-[1.03] sm:px-7 sm:py-3.5 sm:text-sm">
-              <WhatsAppSVG cls="h-4 w-4 sm:h-5 sm:w-5" /> WhatsApp Us Now ›
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#FFC300] px-6 py-3 text-sm font-extrabold text-black shadow-lg shadow-yellow-500/25 transition hover:bg-[#FFD54F] hover:scale-[1.03] sm:w-auto sm:px-7 sm:py-3.5">
+              <WhatsAppSVG cls="h-5 w-5" /> WhatsApp Us Now ›
             </a>
             <a href="#services"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/40 bg-white/10 px-6 py-3 text-xs font-bold text-white backdrop-blur-sm transition hover:border-[#FFC300] hover:text-[#FFC300] sm:px-7 sm:py-3.5 sm:text-sm">
+              className="inline-flex w-full items-center justify-center gap-2 rounded-full border-2 border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:border-[#FFC300] hover:text-[#FFC300] sm:w-auto sm:px-7 sm:py-3.5">
               Our Services ›
             </a>
           </div>
@@ -149,7 +149,7 @@ export function TestimonialCard({ quote, name }: { quote: string; name: string }
 export function Footer() {
   return (
     <footer id="contact" className="border-t border-white/10 bg-[#060911]">
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:grid-cols-2 sm:gap-10 sm:py-16 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-2.5 mb-4">
             <span className="text-2xl font-black text-[#FFC300]">DLH</span>
@@ -209,8 +209,8 @@ export function Footer() {
 /* ─────────────────── FLOATING WHATSAPP ─────────────────── */
 export function FloatingWhatsApp() {
   return (
-    <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-      className="fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 transition hover:scale-110">
+    <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer" aria-label="WhatsApp"
+      className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 transition hover:scale-110 sm:bottom-5 sm:right-5">
       <WhatsAppSVG cls="h-7 w-7" />
     </a>
   );

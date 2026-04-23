@@ -38,9 +38,9 @@ export default function Page() {
       <Hero />
 
       {/* ═══════ SERVICES ═══════ */}
-      <section id="services" className="py-24">
+      <section id="services" className="py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-10">
             {/* Left heading */}
             <div className="flex flex-col items-start">
               <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Our Services</p>
@@ -54,7 +54,7 @@ export default function Page() {
             </div>
 
             {/* Right cards — 3 per row */}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-3">
               {services.map((s) => (
                 <ServiceCard key={s.title} title={s.title} description={s.desc} image={s.image} />
               ))}
@@ -64,9 +64,9 @@ export default function Page() {
       </section>
 
       {/* ═══════ RENTALS ═══════ */}
-      <section className="border-y border-white/[.06] bg-[#111627] py-24">
+      <section className="border-y border-white/[.06] bg-[#111627] py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[240px_1fr] lg:items-start">
+          <div className="grid gap-8 lg:grid-cols-[240px_1fr] lg:items-start lg:gap-10">
             <div className="flex flex-col items-start">
               <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Vehicle Rentals</p>
               <h2 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">
@@ -86,11 +86,11 @@ export default function Page() {
       </section>
 
       {/* ═══════ WHY CHOOSE US ═══════ */}
-      <section id="aboutus" className="py-24">
+      <section id="aboutus" className="py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
             {/* Left */}
-            <div className="rounded-2xl border border-white/[.07] bg-[#111627] p-8 lg:p-10">
+            <div className="rounded-2xl border border-white/[.07] bg-[#111627] p-6 sm:p-8 lg:p-10">
               <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Why Choose Us?</p>
               <h3 className="mt-4 text-3xl font-black leading-tight">
                 Local. Reliable.<br /><span className="text-[#FFC300]">Skilled.</span>
@@ -112,7 +112,7 @@ export default function Page() {
             <div className="relative overflow-hidden rounded-2xl border border-white/[.07]"
               style={{ backgroundImage: "url(https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80)", backgroundSize: "cover", backgroundPosition: "center" }}>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="relative flex h-full min-h-[380px] flex-col justify-between p-6">
+              <div className="relative flex h-full min-h-[300px] flex-col justify-between p-5 sm:min-h-[380px] sm:p-6">
                 <div className="flex items-center justify-center flex-1">
                   <div className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-[#FFC300] text-black shadow-lg transition hover:scale-110">
                     <span className="ml-1 text-2xl font-bold">▶</span>
@@ -133,11 +133,11 @@ export default function Page() {
       </section>
 
       {/* ═══════ MORE REVIEWS ═══════ */}
-      <section id="reviews" className="border-t border-white/[.06] bg-[#111627] py-24">
+      <section id="reviews" className="border-t border-white/[.06] bg-[#111627] py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">Reviews</p>
-          <h2 className="mt-3 text-4xl font-black sm:text-5xl">What our <span className="text-[#FFC300]">clients say</span></h2>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <h2 className="mt-3 text-3xl font-black sm:text-4xl lg:text-5xl">What our <span className="text-[#FFC300]">clients say</span></h2>
+          <div className="mt-10 grid gap-5 sm:mt-14 sm:gap-6 md:grid-cols-3">
             {testimonials.map((t) => (
               <TestimonialCard key={t.name} quote={t.quote} name={t.name} />
             ))}
@@ -146,10 +146,10 @@ export default function Page() {
       </section>
 
       {/* ═══════ CTA ═══════ */}
-      <section className="py-24">
+      <section className="py-14 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-5xl px-5 lg:px-8">
           <div className="overflow-hidden rounded-3xl border border-white/[.07] bg-[#111627]">
-            <div className="grid items-center gap-8 p-8 lg:grid-cols-[auto_1fr_auto] lg:p-14">
+            <div className="flex flex-col items-center gap-6 p-6 text-center sm:p-10 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-8 lg:p-14 lg:text-left">
               <div className="hidden lg:block">
                 <div className="relative h-64 w-64">
                   <div className="absolute inset-0 rounded-full bg-[#FFC300]/25 blur-3xl" />
@@ -157,16 +157,16 @@ export default function Page() {
                 </div>
               </div>
               <div>
-                <h2 className="text-3xl font-black sm:text-4xl">Ready to get your <span className="text-[#FFC300]">job done?</span></h2>
-                <p className="mt-2 text-gray-400">Contact us today for a free quote.</p>
+                <h2 className="text-2xl font-black sm:text-3xl lg:text-4xl">Ready to get your <span className="text-[#FFC300]">job done?</span></h2>
+                <p className="mt-2 text-sm text-gray-400 sm:text-base">Contact us today for a free quote.</p>
               </div>
-              <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row lg:flex-col">
                 <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-7 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]">
+                  className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-6 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F] sm:px-7">
                   💬 WhatsApp Us Now ›
                 </a>
                 <a href="tel:+59995112097"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 px-7 py-3.5 text-sm font-bold text-white transition hover:border-white">
+                  className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 px-6 py-3.5 text-sm font-bold text-white transition hover:border-white sm:px-7">
                   📞 +5999 511 2097
                 </a>
               </div>
