@@ -149,61 +149,118 @@ export function TestimonialCard({ quote, name }: { quote: string; name: string }
 /* ─────────────────── FOOTER ─────────────────── */
 export function Footer() {
   return (
-    <footer id="contact" className="border-t border-white/10 bg-[#060911]">
-      <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:grid-cols-2 sm:gap-10 sm:py-16 lg:grid-cols-4 lg:px-8">
-        <div>
-          <div className="flex items-center gap-2.5 mb-4">
-            <span className="text-2xl font-black text-[#FFC300]">DLH</span>
+    <footer id="contact" className="relative border-t border-white/10 bg-gradient-to-b from-[#060911] to-[#030508]">
+      {/* subtle gold top accent */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFC300]/40 to-transparent" />
+
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-12 sm:py-16 lg:grid-cols-12 lg:px-8">
+        {/* Brand */}
+        <div className="lg:col-span-4">
+          <Link href="/" className="inline-flex items-center gap-2.5">
+            <span className="text-3xl font-black tracking-tight text-[#FFC300]">DLH</span>
             <span className="text-[11px] font-bold uppercase leading-tight tracking-widest text-white">Diligence<br/>Local Handyman</span>
-          </div>
-          <p className="text-sm leading-7 text-gray-400">Your trusted partner for vehicle rentals and repair services in Curaçao.</p>
-          <div className="mt-5 flex gap-3">
-            <SocialIcon href="https://instagram.com/diligencelocalhandyman" label="IG" />
-            <SocialIcon href="https://wa.me/59995112097" label="WA" />
+          </Link>
+          <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
+            Your trusted local handyman in Curaçao. Quality repairs, honest pricing, and fast response — every time.
+          </p>
+          <div className="mt-6 flex gap-3">
+            <SocialIconLink href="https://instagram.com/diligencelocalhandyman" label="Instagram">
+              <InstagramIcon />
+            </SocialIconLink>
+            <SocialIconLink href="https://wa.me/59995112097" label="WhatsApp">
+              <WhatsAppSVG cls="h-4 w-4" />
+            </SocialIconLink>
+            <SocialIconLink href="mailto:Lokalhandyman84@gmail.com" label="Email">
+              <MailIcon />
+            </SocialIconLink>
+            <SocialIconLink href="tel:+59995112097" label="Phone">
+              <PhoneIcon />
+            </SocialIconLink>
           </div>
         </div>
-        <div>
-          <p className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Quick Links</p>
+
+        {/* Quick Links */}
+        <div className="lg:col-span-2">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">Company</p>
           <ul className="space-y-3 text-sm text-gray-400">
-            {["Home","Services","About Us","Reviews","Contact"].map((l)=>(
-              <li key={l}><a href={`#${l.toLowerCase().replace(/\s/g,"")}`} className="transition hover:text-[#FFC300]">{l}</a></li>
+            <li><Link href="/" className="transition hover:text-[#FFC300]">Home</Link></li>
+            <li><Link href="/services" className="transition hover:text-[#FFC300]">Services</Link></li>
+            <li><a href="/#aboutus" className="transition hover:text-[#FFC300]">About Us</a></li>
+            <li><a href="/#reviews" className="transition hover:text-[#FFC300]">Reviews</a></li>
+            <li><a href="/#contact" className="transition hover:text-[#FFC300]">Contact</a></li>
+          </ul>
+        </div>
+
+        {/* Services */}
+        <div className="lg:col-span-3">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">Services</p>
+          <ul className="space-y-3 text-sm text-gray-400">
+            {["General Repairs","Painting","Plumbing","Electrical Work","Furniture Assembly","Air Conditioning"].map((s)=>(
+              <li key={s}><Link href="/services" className="transition hover:text-[#FFC300]">{s}</Link></li>
             ))}
           </ul>
         </div>
-        <div>
-          <p className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Services</p>
-          <ul className="space-y-3 text-sm text-gray-400">
-            {["General Repairs","Painting","Plumbing","Electrical Work","Furniture Assembly","Air Conditioning","Car Rental","Jetski Rental","Quad Rental"].map((s)=>(
-              <li key={s}>{s}</li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p className="mb-4 text-sm font-bold uppercase tracking-wider text-white">Contact</p>
+
+        {/* Contact */}
+        <div className="lg:col-span-3">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">Get in Touch</p>
           <ul className="space-y-4 text-sm text-gray-400">
-            <li className="flex items-start gap-2.5">
-              <span className="mt-0.5 text-[#FFC300]">📞</span>
-              <a href="tel:+59995112097" className="hover:text-[#FFC300]">+5999 511 2097</a>
+            <li>
+              <a href="tel:+59995112097" className="group flex items-start gap-3 transition hover:text-white">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+                  <PhoneIcon />
+                </span>
+                <span>
+                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">Call us</span>
+                  <span className="font-semibold">+5999 511 2097</span>
+                </span>
+              </a>
             </li>
-            <li className="flex items-start gap-2.5">
-              <span className="mt-0.5 text-[#FFC300]">✉️</span>
-              <a href="mailto:Lokalhandyman84@gmail.com" className="hover:text-[#FFC300]">Lokalhandyman84@gmail.com</a>
+            <li>
+              <a href="mailto:Lokalhandyman84@gmail.com" className="group flex items-start gap-3 transition hover:text-white">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+                  <MailIcon />
+                </span>
+                <span>
+                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">Email</span>
+                  <span className="break-all font-semibold">Lokalhandyman84@gmail.com</span>
+                </span>
+              </a>
             </li>
-            <li className="flex items-start gap-2.5">
-              <span className="mt-0.5 text-[#FFC300]">📷</span>
-              <a href="https://instagram.com/diligencelocalhandyman" target="_blank" rel="noreferrer" className="hover:text-[#FFC300]">@diligencelocalhandyman</a>
-            </li>
-            <li className="flex items-start gap-2.5">
-              <span className="mt-0.5 text-[#FFC300]">📍</span>
-              <span>Willemstad, Curaçao</span>
+            <li className="flex items-start gap-3">
+              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFC300]">
+                <PinIcon />
+              </span>
+              <span>
+                <span className="block text-[10px] uppercase tracking-wider text-gray-500">Based in</span>
+                <span className="font-semibold text-gray-300">Willemstad, Curaçao</span>
+              </span>
             </li>
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 py-6 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Diligence Local Handyman. All rights reserved. Built with pride in Curaçao 🇨🇼💛
+
+      <div className="border-t border-white/[.07]">
+        <div className="mx-auto max-w-7xl px-5 py-6 text-center text-xs text-gray-500 lg:px-8">
+          © 2026 Diligence Local Handyman. All rights reserved. Built in Curaçao 🇨🇼
+        </div>
       </div>
     </footer>
+  );
+}
+
+/* ── Modern social icon wrapper ── */
+function SocialIconLink({ href, label, children }: { href: string; label: string; children: React.ReactNode }) {
+  const external = href.startsWith("http");
+  return (
+    <a
+      href={href}
+      {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
+      aria-label={label}
+      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[.03] text-gray-400 transition hover:border-[#FFC300] hover:bg-[#FFC300] hover:text-black"
+    >
+      {children}
+    </a>
   );
 }
 
@@ -226,12 +283,39 @@ function WhatsAppSVG({ cls = "h-5 w-5" }: { cls?: string }) {
   );
 }
 
-function SocialIcon({ href, label }: { href: string; label: string }) {
+function InstagramIcon() {
   return (
-    <a href={href} target="_blank" rel="noreferrer"
-      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 text-xs font-bold text-gray-400 transition hover:border-[#FFC300] hover:text-[#FFC300]">
-      {label}
-    </a>
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+    </svg>
+  );
+}
+
+function MailIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+      <polyline points="22,6 12,13 2,6" />
+    </svg>
+  );
+}
+
+function PhoneIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  );
+}
+
+function PinIcon() {
+  return (
+    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
   );
 }
 
