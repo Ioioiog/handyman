@@ -186,6 +186,7 @@ export function Hero() {
         <video
           ref={videoRef}
           src="/talkhero.mp4"
+          poster="/hero.png"
           autoPlay
           muted
           playsInline
@@ -196,7 +197,7 @@ export function Hero() {
         <button
           onClick={toggleMute}
           aria-label={muted ? "Unmute video" : "Mute video"}
-          className="absolute top-3 right-3 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-fg backdrop-blur-sm ring-1 ring-fg/20 transition hover:bg-[#FFC300] hover:text-black sm:top-5 sm:right-5 sm:h-12 sm:w-12"
+          className="absolute top-3 right-3 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm ring-1 ring-white/20 transition hover:bg-[#FFC300] hover:text-black sm:top-5 sm:right-5 sm:h-12 sm:w-12"
         >
           {muted ? (
             <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10H3zm13.59 2L20 8.41 18.59 7 15 10.59 11.41 7 10 8.41 13.59 12 10 15.59 11.41 17 15 13.41 18.59 17 20 15.59 16.41 12z"/></svg>
@@ -219,7 +220,7 @@ export function Hero() {
 
           <div className="mt-7 flex flex-row flex-wrap items-center gap-4 sm:justify-end sm:gap-6">
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-sm bg-[#FFC300] px-5 py-3 text-[12px] font-semibold tracking-wide text-black transition hover:bg-white sm:px-7 sm:text-[13px]">
+              className="inline-flex items-center gap-2 rounded-sm bg-[#FFC300] px-5 py-3 text-[12px] font-semibold tracking-wide text-black transition hover:bg-[#FFD54F] sm:px-7 sm:text-[13px]">
               <WhatsAppSVG cls="h-4 w-4" /> {t.hero.whatsapp}
             </a>
             <a href="#services"

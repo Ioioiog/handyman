@@ -214,7 +214,7 @@ function VideoCard({ locations, caption }: { locations: string[]; caption: strin
     else { v.pause(); setPlaying(false); }
   };
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-border bg-black">
+    <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-surface-2">
       <video
         ref={ref}
         src="/0426.mp4"
@@ -223,7 +223,7 @@ function VideoCard({ locations, caption }: { locations: string[]; caption: strin
         onClick={toggle}
         onPlay={() => setPlaying(true)}
         onPause={() => setPlaying(false)}
-        className="h-full w-full cursor-pointer object-cover"
+        className="absolute inset-0 h-full w-full cursor-pointer object-cover"
       />
       {/* Play button overlay */}
       {!playing && (
