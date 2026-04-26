@@ -265,18 +265,9 @@ function VideoCard({ locations, caption }: { locations: string[]; caption: strin
             </span>
           </button>
         )}
-        {/* Caption overlay (sm and up) */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden bg-gradient-to-t from-black/80 to-transparent p-5 sm:block sm:p-6">
-          <p className="text-sm font-bold text-white">{caption}</p>
-          <div className="mt-2 flex flex-wrap gap-2">
-            {locations.map((l) => (
-              <span key={l} className="rounded-full bg-fg/10 px-3 py-1 text-xs text-white backdrop-blur-sm">{l}</span>
-            ))}
-          </div>
-        </div>
       </div>
-      {/* Caption stacked below (mobile only) */}
-      <div className="mt-4 sm:hidden">
+      {/* Caption stacked below video on all devices */}
+      <div className="mt-4 sm:mt-5">
         <p className="text-sm font-bold text-fg">{caption}</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {locations.map((l) => (
