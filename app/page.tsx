@@ -10,7 +10,31 @@ import {
 } from "@/components/dlh";
 import { useT } from "@/lib/i18n";
 
-const locations = ["Willemstad", "Jan Thiel", "Blue Bay", "Westpunt", "Banda Abou", "Punda"];
+const locations = [
+  "Willemstad",
+  "Punda",
+  "Otrobanda",
+  "Pietermaai",
+  "Scharloo",
+  "Saliña",
+  "Mahaai",
+  "Jan Thiel",
+  "Caracasbaai",
+  "Spanish Water",
+  "Blue Bay",
+  "Piscadera",
+  "Sint Michiel",
+  "Julianadorp",
+  "Brakkeput",
+  "Nieuwpoort",
+  "Sint Willibrordus",
+  "Soto",
+  "Barber",
+  "Lagun",
+  "Westpunt",
+  "Banda Abou",
+  "Bándariba",
+];
 
 export default function Page() {
   const { t } = useT();
@@ -214,38 +238,49 @@ function VideoCard({ locations, caption }: { locations: string[]; caption: strin
     else { v.pause(); setPlaying(false); }
   };
   return (
-    <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-surface-2">
-      <video
-        ref={ref}
-        src="/0426.mp4"
-        playsInline
-        preload="metadata"
-        onClick={toggle}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        className="absolute inset-0 h-full w-full cursor-pointer object-cover"
-      />
-      {/* Play button overlay */}
-      {!playing && (
-        <button
-          type="button"
+    <div>
+      <div className="relative aspect-video overflow-hidden rounded-2xl border border-border bg-surface-2">
+        <video
+          ref={ref}
+          src="/0426.mp4"
+          playsInline
+          preload="metadata"
           onClick={toggle}
-          aria-label="Play video"
-          className="absolute inset-0 flex items-center justify-center bg-black/30 transition hover:bg-black/20"
-        >
-          <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#FFC300] text-black shadow-xl shadow-yellow-500/40 transition hover:scale-110 sm:h-28 sm:w-28">
-            <svg viewBox="0 0 24 24" className="ml-1 h-10 w-10 sm:h-12 sm:w-12" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-        </button>
-      )}
-      {/* Caption overlay */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 sm:p-6">
-        <p className="text-sm font-bold text-white">{caption}</p>
+          onPlay={() => setPlaying(true)}
+          onPause={() => setPlaying(false)}
+          className="absolute inset-0 h-full w-full cursor-pointer object-cover"
+        />
+        {/* Play button overlay */}
+        {!playing && (
+          <button
+            type="button"
+            onClick={toggle}
+            aria-label="Play video"
+            className="absolute inset-0 flex items-center justify-center bg-black/30 transition hover:bg-black/20"
+          >
+            <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#FFC300] text-black shadow-xl shadow-yellow-500/40 transition hover:scale-110 sm:h-28 sm:w-28">
+              <svg viewBox="0 0 24 24" className="ml-1 h-10 w-10 sm:h-12 sm:w-12" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </button>
+        )}
+        {/* Caption overlay (sm and up) */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 hidden bg-gradient-to-t from-black/80 to-transparent p-5 sm:block sm:p-6">
+          <p className="text-sm font-bold text-white">{caption}</p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            {locations.map((l) => (
+              <span key={l} className="rounded-full bg-fg/10 px-3 py-1 text-xs text-white backdrop-blur-sm">{l}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Caption stacked below (mobile only) */}
+      <div className="mt-4 sm:hidden">
+        <p className="text-sm font-bold text-fg">{caption}</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {locations.map((l) => (
-            <span key={l} className="rounded-full bg-fg/10 px-3 py-1 text-xs text-white backdrop-blur-sm">{l}</span>
+            <span key={l} className="rounded-full border border-border bg-fg/5 px-3 py-1 text-xs text-fg-soft">{l}</span>
           ))}
         </div>
       </div>
