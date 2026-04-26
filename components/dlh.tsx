@@ -162,7 +162,6 @@ export function Hero() {
           src="/talkhero.mp4"
           autoPlay
           muted
-          loop
           playsInline
           preload="metadata"
           aria-label="Diligence Local Handyman"
