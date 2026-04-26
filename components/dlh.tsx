@@ -2,6 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { useT, LANG_META, type Lang } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 
 /* ─────────────────── COLORS ─────────────────── */
 const C = {
@@ -29,26 +30,27 @@ export function Navbar() {
     { key: "contact", label: t.nav.contact, href: "/#contact" },
   ];
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0F1A]/95 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5">
           <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#FFC300] font-display text-[12px] font-semibold tracking-tight text-black">DLH</span>
-          <span className="hidden text-[11px] font-medium uppercase leading-tight tracking-[.18em] text-white/90 sm:block">Diligence Local Handyman</span>
+          <span className="hidden text-[11px] font-medium uppercase leading-tight tracking-[.18em] text-fg/90 sm:block">Diligence Local Handyman</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((l) => (
-            <a key={l.key} href={l.href} className="text-[13px] font-medium tracking-wide text-gray-300 transition hover:text-white">{l.label}</a>
+            <a key={l.key} href={l.href} className="text-[13px] font-medium tracking-wide text-fg-soft transition hover:text-fg">{l.label}</a>
           ))}
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
+          <ThemeToggle />
           <LanguageSwitcher />
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="hidden md:inline-flex items-center gap-2 rounded-sm border border-white/20 px-4 py-2 text-[12px] font-semibold tracking-wide text-white transition hover:border-[#FFC300] hover:text-[#FFC300]">
+            className="hidden md:inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#FFC300] hover:text-[#FFC300]">
             <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
           </a>
-          <button onClick={() => setOpen(!open)} aria-label="Menu" className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-white/10 text-white lg:hidden">
+          <button onClick={() => setOpen(!open)} aria-label="Menu" className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-fg lg:hidden">
             <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
               {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
             </svg>
@@ -57,10 +59,10 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#0B0F1A] px-5 pb-6 pt-4 lg:hidden">
+        <div className="border-t border-border bg-bg px-5 pb-6 pt-4 lg:hidden">
           {navLinks.map((l) => (
             <a key={l.key} href={l.href} onClick={() => setOpen(false)}
-              className="block border-b border-white/5 py-3 text-sm font-medium text-gray-300 transition hover:text-white">{l.label}</a>
+              className="block border-b border-fg/5 py-3 text-sm font-medium text-fg-soft transition hover:text-fg">{l.label}</a>
           ))}
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
             className="mt-5 flex items-center justify-center gap-2 rounded-sm bg-[#FFC300] py-3 text-sm font-semibold text-black">
@@ -69,6 +71,30 @@ export function Navbar() {
         </div>
       )}
     </header>
+  );
+}
+
+/* ── Theme Toggle ── */
+function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  return (
+    <button
+      onClick={toggle}
+      aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+      title={theme === "dark" ? "Light mode" : "Dark mode"}
+      className="inline-flex h-8 w-8 items-center justify-center rounded-sm border border-fg/15 text-fg transition hover:border-fg/40"
+    >
+      {theme === "dark" ? (
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+      )}
+    </button>
   );
 }
 
@@ -91,7 +117,7 @@ function LanguageSwitcher() {
       <button
         onClick={() => setOpen(!open)}
         aria-label="Change language"
-        className="inline-flex items-center gap-1.5 rounded-sm border border-white/15 px-2.5 py-1.5 text-[11px] font-semibold tracking-wider text-white transition hover:border-white/40"
+        className="inline-flex items-center gap-1.5 rounded-sm border border-fg/15 px-2.5 py-1.5 text-[11px] font-semibold tracking-wider text-fg transition hover:border-fg/40"
       >
         <span>{LANG_META[lang].label}</span>
         <svg viewBox="0 0 24 24" className={`h-3 w-3 transition ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -99,15 +125,15 @@ function LanguageSwitcher() {
         </svg>
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-sm border border-white/10 bg-[#111627] shadow-xl">
+        <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-sm border border-border bg-surface shadow-xl">
           {(Object.keys(LANG_META) as Lang[]).map((code) => (
             <button
               key={code}
               onClick={() => { setLang(code); setOpen(false); }}
-              className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition hover:bg-white/5 ${lang === code ? "text-white" : "text-gray-400"}`}
+              className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition hover:bg-fg/5 ${lang === code ? "text-fg" : "text-muted"}`}
             >
               <span className="font-medium">{LANG_META[code].name}</span>
-              <span className="text-[10px] tracking-[.15em] text-gray-500">{LANG_META[code].label}</span>
+              <span className="text-[10px] tracking-[.15em] text-muted-soft">{LANG_META[code].label}</span>
             </button>
           ))}
         </div>
@@ -155,7 +181,7 @@ export function Hero() {
     if (!v.muted) v.play().catch(() => {});
   };
   return (
-    <section id="home" className="relative bg-[#0B0F1A]">
+    <section id="home" className="relative bg-bg">
       <div className="relative w-full overflow-hidden">
         <video
           ref={videoRef}
@@ -170,7 +196,7 @@ export function Hero() {
         <button
           onClick={toggleMute}
           aria-label={muted ? "Unmute video" : "Mute video"}
-          className="absolute top-3 right-3 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm ring-1 ring-white/20 transition hover:bg-[#FFC300] hover:text-black sm:top-5 sm:right-5 sm:h-12 sm:w-12"
+          className="absolute top-3 right-3 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-fg backdrop-blur-sm ring-1 ring-fg/20 transition hover:bg-[#FFC300] hover:text-black sm:top-5 sm:right-5 sm:h-12 sm:w-12"
         >
           {muted ? (
             <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10H3zm13.59 2L20 8.41 18.59 7 15 10.59 11.41 7 10 8.41 13.59 12 10 15.59 11.41 17 15 13.41 18.59 17 20 15.59 16.41 12z"/></svg>
@@ -179,15 +205,15 @@ export function Hero() {
           )}
         </button>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/70 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-transparent pointer-events-none" />
 
         <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-8 sm:left-auto sm:w-1/2 sm:px-8 sm:pb-14 lg:px-16 lg:pb-20 sm:text-right">
-          <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-white/70 sm:text-[11px] sm:tracking-[.28em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 font-display text-[34px] font-normal leading-[1.05] text-white sm:text-5xl lg:text-[64px]">
+          <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-fg/70 sm:text-[11px] sm:tracking-[.28em]">{t.hero.eyebrow}</p>
+          <h1 className="mt-4 font-display text-[34px] font-normal leading-[1.05] text-fg sm:text-5xl lg:text-[64px]">
             {t.hero.title1}<br />
-            <span className="italic text-white/60">{t.hero.title2}</span>
+            <span className="italic text-fg/60">{t.hero.title2}</span>
           </h1>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-gray-300 sm:ml-auto">
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-fg-soft sm:ml-auto">
             {t.hero.subtitle}
           </p>
 
@@ -197,7 +223,7 @@ export function Hero() {
               <WhatsAppSVG cls="h-4 w-4" /> {t.hero.whatsapp}
             </a>
             <a href="#services"
-              className="inline-flex items-center gap-2 border-b border-white/60 pb-1 text-[12px] font-semibold tracking-wide text-white transition hover:border-[#FFC300] hover:text-[#FFC300] sm:text-[13px]">
+              className="inline-flex items-center gap-2 border-b border-fg/60 pb-1 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#FFC300] hover:text-[#FFC300] sm:text-[13px]">
               {t.hero.services}
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
@@ -216,8 +242,8 @@ export function SectionHeading({ eyebrow, title, description }: { eyebrow: strin
   return (
     <div className="max-w-3xl">
       <p className="text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">{eyebrow}</p>
-      <h2 className="mt-4 font-display text-3xl font-normal leading-[1.1] text-white sm:text-5xl">{title}</h2>
-      {description && <p className="mt-5 text-base leading-7 text-gray-400">{description}</p>}
+      <h2 className="mt-4 font-display text-3xl font-normal leading-[1.1] text-fg sm:text-5xl">{title}</h2>
+      {description && <p className="mt-5 text-base leading-7 text-muted">{description}</p>}
     </div>
   );
 }
@@ -236,7 +262,7 @@ export const SERVICE_ICONS: Record<string, React.ReactNode> = {
 };
 
 /* ─────────────────── SERVICE CARD ─────────────────── */
-export function ServiceCard({ title, description, slug, index, image }: { title: string; description: string; slug?: string; index?: number; image?: string }) {
+export function ServiceCard({ title, description, slug, index, image, imagePosition = "object-top" }: { title: string; description: string; slug?: string; index?: number; image?: string; imagePosition?: string }) {
   const { t } = useT();
   const icon = slug ? SERVICE_ICONS[slug] : null;
   return (
@@ -244,7 +270,7 @@ export function ServiceCard({ title, description, slug, index, image }: { title:
       href="https://wa.me/59995112097"
       target="_blank"
       rel="noreferrer"
-      className="group relative flex flex-col overflow-hidden rounded-sm border border-white/10 bg-[#0B0F1A] p-5 transition hover:border-[#FFC300]/50 sm:p-6"
+      className="group relative flex flex-col overflow-hidden rounded-sm border border-border bg-bg p-5 transition hover:border-[#FFC300]/50 sm:p-6"
     >
       {/* Hover image reveal */}
       {image && (
@@ -253,23 +279,23 @@ export function ServiceCard({ title, description, slug, index, image }: { title:
             src={image}
             alt=""
             aria-hidden
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+            className={`pointer-events-none absolute inset-0 h-full w-full object-cover ${imagePosition} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/70 to-[#0B0F1A]/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-bg via-bg/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </>
       )}
 
       {/* Foreground content */}
       <div className="relative flex items-start justify-between">
-        <div className="flex h-11 w-11 items-center justify-center border border-white/10 text-[#FFC300] transition group-hover:border-[#FFC300]/60 group-hover:bg-[#FFC300] group-hover:text-black">
+        <div className="flex h-11 w-11 items-center justify-center border border-border text-[#FFC300] opacity-100 transition-opacity duration-300 group-hover:opacity-0">
           {icon ?? <WrenchIcon />}
         </div>
         {typeof index === "number" && (
-          <span className="font-display text-[11px] tracking-wider text-gray-500">{String(index).padStart(2, "0")}</span>
+          <span className="font-display text-[11px] tracking-wider text-muted-soft transition-opacity duration-300 group-hover:opacity-0">{String(index).padStart(2, "0")}</span>
         )}
       </div>
-      <h3 className="relative mt-6 font-display text-lg font-normal leading-snug text-white sm:text-xl">{title}</h3>
-      <p className="relative mt-2 flex-1 text-[13px] leading-relaxed text-gray-400 transition group-hover:text-gray-200">{description}</p>
+      <h3 className="relative mt-6 font-display text-lg font-normal leading-snug text-fg sm:text-xl">{title}</h3>
+      <p className="relative mt-2 flex-1 text-[13px] leading-relaxed text-muted transition group-hover:text-fg-soft">{description}</p>
       <div className="relative mt-5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[.18em] text-[#FFC300] transition group-hover:gap-2.5">
         {t.services.learnMore}
         <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -280,23 +306,23 @@ export function ServiceCard({ title, description, slug, index, image }: { title:
 
 /* ─────────────────── COMPAT EXPORTS ─────────────────── */
 export function HighlightCard({ title, text }: { title: string; text: string }) {
-  return <div className="rounded-2xl border border-white/10 bg-white/5 p-5"><h3 className="text-lg font-bold text-white">{title}</h3><p className="mt-2 text-sm text-gray-400">{text}</p></div>;
+  return <div className="rounded-2xl border border-fg/20 p-5"><h3 className="text-lg font-bold text-fg">{title}</h3><p className="mt-2 text-sm text-muted">{text}</p></div>;
 }
 export function MiniFeature({ title, subtitle }: { title: string; subtitle: string }) {
-  return <div className="rounded-xl border border-white/10 bg-white/5 p-4"><p className="font-bold text-white">{title}</p><p className="mt-1 text-sm text-gray-400">{subtitle}</p></div>;
+  return <div className="rounded-xl border border-fg/20 p-4"><p className="font-bold text-fg">{title}</p><p className="mt-1 text-sm text-muted">{subtitle}</p></div>;
 }
 export function TestimonialCard({ quote, name }: { quote: string; name: string }) {
   return (
-    <div className="flex flex-col rounded-sm border border-white/10 bg-[#0B0F1A] p-7 sm:p-8">
-      <div className="flex gap-1 text-[#FFC300]">
+    <div className="flex flex-col rounded-sm border border-border bg-bg p-7 sm:p-8">
+      <div className="flex gap-1 text-fg">
         {Array.from({ length: 5 }).map((_, i) => (
           <svg key={i} viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
             <path d="M12 2l2.9 7h7l-5.7 4.3 2.2 7L12 16l-6.4 4.3 2.2-7L2 9h7z" />
           </svg>
         ))}
       </div>
-      <p className="mt-5 font-display text-lg leading-[1.5] text-gray-200">&ldquo;{quote}&rdquo;</p>
-      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[.18em] text-gray-500">— {name}</p>
+      <p className="mt-5 font-display text-lg leading-[1.5] text-fg-soft">&ldquo;{quote}&rdquo;</p>
+      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[.18em] text-muted-soft">— {name}</p>
     </div>
   );
 }
@@ -305,14 +331,14 @@ export function TestimonialCard({ quote, name }: { quote: string; name: string }
 export function Footer() {
   const { t } = useT();
   return (
-    <footer id="contact" className="relative border-t border-white/10 bg-[#060911]">
+    <footer id="contact" className="relative border-t border-border bg-surface-2 dark:bg-[#060911]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 sm:gap-12 sm:py-20 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
             <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#FFC300] font-display text-[14px] font-semibold tracking-tight text-black">DLH</span>
-            <span className="font-display text-base text-white">Diligence Local Handyman</span>
+            <span className="font-display text-base text-fg">Diligence Local Handyman</span>
           </Link>
-          <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
+          <p className="mt-5 max-w-sm text-sm leading-7 text-muted">
             {t.footer.tagline}
           </p>
           <div className="mt-6 flex gap-3">
@@ -332,8 +358,8 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-2">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">{t.footer.company}</p>
-          <ul className="space-y-3 text-sm text-gray-400">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-fg">{t.footer.company}</p>
+          <ul className="space-y-3 text-sm text-muted">
             <li><Link href="/" className="transition hover:text-[#FFC300]">{t.nav.home}</Link></li>
             <li><Link href="/services" className="transition hover:text-[#FFC300]">{t.nav.services}</Link></li>
             <li><a href="/#aboutus" className="transition hover:text-[#FFC300]">{t.nav.about}</a></li>
@@ -343,8 +369,8 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-3">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">{t.footer.servicesCol}</p>
-          <ul className="space-y-3 text-sm text-gray-400">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-fg">{t.footer.servicesCol}</p>
+          <ul className="space-y-3 text-sm text-muted">
             {[t.services.items.repairs.title, t.services.items.painting.title, t.services.items.plumbing.title, t.services.items.electrical.title, t.services.items.furniture.title, t.services.items.ac.title].map((s)=>(
               <li key={s}><Link href="/services" className="transition hover:text-[#FFC300]">{s}</Link></li>
             ))}
@@ -352,45 +378,45 @@ export function Footer() {
         </div>
 
         <div className="lg:col-span-3">
-          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-white">{t.footer.contactCol}</p>
-          <ul className="space-y-4 text-sm text-gray-400">
+          <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-fg">{t.footer.contactCol}</p>
+          <ul className="space-y-4 text-sm text-muted">
             <li>
-              <a href="tel:+59995112097" className="group flex items-start gap-3 transition hover:text-white">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+              <a href="tel:+59995112097" className="group flex items-start gap-3 transition hover:text-fg">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
                   <PhoneIcon />
                 </span>
                 <span>
-                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">{t.footer.callUs}</span>
+                  <span className="block text-[10px] uppercase tracking-wider text-muted-soft">{t.footer.callUs}</span>
                   <span className="font-semibold">+5999 511 2097</span>
                 </span>
               </a>
             </li>
             <li>
-              <a href="mailto:Lokalhandyman84@gmail.com" className="group flex items-start gap-3 transition hover:text-white">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+              <a href="mailto:Lokalhandyman84@gmail.com" className="group flex items-start gap-3 transition hover:text-fg">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
                   <MailIcon />
                 </span>
                 <span>
-                  <span className="block text-[10px] uppercase tracking-wider text-gray-500">{t.footer.email}</span>
+                  <span className="block text-[10px] uppercase tracking-wider text-muted-soft">{t.footer.email}</span>
                   <span className="break-all font-semibold">Lokalhandyman84@gmail.com</span>
                 </span>
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-white/5 text-[#FFC300]">
+              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFC300]">
                 <PinIcon />
               </span>
               <span>
-                <span className="block text-[10px] uppercase tracking-wider text-gray-500">{t.footer.basedIn}</span>
-                <span className="font-semibold text-gray-300">{t.footer.location}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-muted-soft">{t.footer.basedIn}</span>
+                <span className="font-semibold text-fg-soft">{t.footer.location}</span>
               </span>
             </li>
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/[.07]">
-        <div className="mx-auto max-w-7xl px-5 py-6 text-center text-xs text-gray-500 lg:px-8">
+      <div className="border-t border-border">
+        <div className="mx-auto max-w-7xl px-5 py-6 text-center text-xs text-muted-soft lg:px-8">
           {t.footer.rights}
         </div>
       </div>
@@ -406,7 +432,7 @@ function SocialIconLink({ href, label, children }: { href: string; label: string
       href={href}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
       aria-label={label}
-      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[.03] text-gray-400 transition hover:border-[#FFC300] hover:bg-[#FFC300] hover:text-black"
+      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-fg/[.03] text-muted transition hover:border-[#FFC300] hover:bg-[#FFC300] hover:text-black"
     >
       {children}
     </a>

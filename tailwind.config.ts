@@ -10,6 +10,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        bg: 'var(--bg)',
+        surface: 'var(--surface)',
+        'surface-2': 'var(--surface-2)',
+        fg: 'var(--fg)',
+        'fg-soft': 'var(--fg-soft)',
+        muted: 'var(--muted)',
+        'muted-soft': 'var(--muted-soft)',
+        border: 'var(--border)',
+        'border-strong': 'var(--border-strong)',
         primary: {
           DEFAULT: '#0B0F1A',
           dark: '#060911',

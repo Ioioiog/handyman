@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Theme tokens ── */
+:root {
+  --bg: #FAFAF7;
+  --surface: #FFFFFF;
+  --surface-2: #F2F1EC;
+  --fg: #0B0F1A;
+  --fg-soft: #1F2937;
+  --muted: #64748B;
+  --muted-soft: #94A3B8;
+  --border: rgba(11, 15, 26, 0.10);
+  --border-strong: rgba(11, 15, 26, 0.18);
+  --accent: #B8860B;
+  --accent-soft: #D4A017;
+}
+.dark {
+  --bg: #0B0F1A;
+  --surface: #111627;
+  --surface-2: #0E1322;
+  --fg: #FFFFFF;
+  --fg-soft: #E5E7EB;
+  --muted: #9CA3AF;
+  --muted-soft: #6B7280;
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --accent: #FFC300;
+  --accent-soft: #FFD54F;
+}
+
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
@@ -10,10 +38,11 @@ html {
 body {
   margin: 0;
   padding: 0;
-  background: #0B0F1A;
-  color: #ffffff;
+  background: var(--bg);
+  color: var(--fg);
   font-family: system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 img {

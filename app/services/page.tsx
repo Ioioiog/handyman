@@ -107,17 +107,17 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
 
 function CompactCard({ cat }: { cat: Category }) {
   return (
-    <div className="flex flex-col rounded-sm border border-white/10 bg-[#0E1322] p-3 transition hover:border-[#FFC300]/40">
+    <div className="flex flex-col rounded-sm border border-border bg-surface-2 p-3 transition hover:border-[#FFC300]/40">
       <div className="flex items-center gap-2">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/10 text-[#FFC300]">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-border text-[#FFC300]">
           <span className="block h-5 w-5">{SERVICE_ICONS[cat.slug] ?? null}</span>
         </div>
-        <h3 className="font-display text-[14px] font-normal text-white leading-tight">{cat.title}</h3>
+        <h3 className="font-display text-[14px] font-normal text-fg leading-tight">{cat.title}</h3>
       </div>
-      <ul className="mt-2 space-y-1 border-t border-white/[.05] pt-2">
+      <ul className="mt-2 space-y-1 border-t border-border pt-2">
         {cat.items.map((it) => (
           <li key={it.name} className="flex items-start justify-between gap-2 text-[11px] leading-snug">
-            <span className="text-gray-400">{it.name}</span>
+            <span className="text-muted">{it.name}</span>
             <span className="whitespace-nowrap font-semibold text-[#FFC300]">{it.price}</span>
           </li>
         ))}
@@ -131,31 +131,31 @@ export default function ServicesPage() {
   const handyman = handymanData(t);
   const rentals = rentalsData(t);
   return (
-    <main className="flex h-screen flex-col overflow-hidden bg-[#0B0F1A] text-white">
+    <main className="flex h-screen flex-col overflow-hidden bg-bg text-fg">
       <Navbar />
 
       <div className="flex flex-1 flex-col overflow-hidden">
         {/* Header strip */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[.06] bg-[#111627] px-5 py-3 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border bg-surface px-5 py-3 lg:px-8">
           <div className="flex items-center gap-3">
-            <Link href="/" className="inline-flex items-center gap-1.5 text-[11px] font-medium text-gray-400 transition hover:text-white">
+            <Link href="/" className="inline-flex items-center gap-1.5 text-[11px] font-medium text-muted transition hover:text-fg">
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
               {t.nav.home}
             </Link>
-            <span className="text-gray-700">/</span>
+            <span className="text-muted-soft">/</span>
             <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">{t.servicesPage.eyebrow}</p>
-            <h1 className="font-display text-base font-normal leading-none text-white sm:text-lg">
-              {t.servicesPage.title1} <span className="italic text-white/60">{t.servicesPage.title2}</span>
+            <h1 className="font-display text-base font-normal leading-none text-fg sm:text-lg">
+              {t.servicesPage.title1} <span className="italic text-fg/60">{t.servicesPage.title2}</span>
             </h1>
           </div>
           <div className="flex items-center gap-2">
             <a href="tel:+59995112097"
-              className="hidden items-center gap-1.5 rounded-sm border border-white/20 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white transition hover:border-white/60 sm:inline-flex">
+              className="hidden items-center gap-1.5 rounded-sm border border-fg/20 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-fg transition hover:border-fg/60 sm:inline-flex">
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
               +5999 511 2097
             </a>
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-sm bg-[#FFC300] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-black transition hover:bg-white">
+              className="inline-flex items-center gap-1.5 rounded-sm bg-[#FFC300] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-black transition hover:bg-[#FFD54F]">
               {t.common.whatsappNow}
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
@@ -167,7 +167,7 @@ export default function ServicesPage() {
           <section className="flex flex-col lg:col-span-8">
             <div className="mb-2 flex items-baseline justify-between">
               <h2 className="text-sm font-black uppercase tracking-wide">{t.servicesPage.handyHeading}</h2>
-              <span className="text-[10px] text-gray-500">{handyman.length} {t.services.eyebrow}</span>
+              <span className="text-[10px] text-muted-soft">{handyman.length} {t.services.eyebrow}</span>
             </div>
             <div className="grid flex-1 grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
               {handyman.map((c) => <CompactCard key={c.title} cat={c} />)}
@@ -177,7 +177,7 @@ export default function ServicesPage() {
           <section className="flex flex-col lg:col-span-4">
             <div className="mb-2 flex items-baseline justify-between">
               <h2 className="text-sm font-black uppercase tracking-wide">{t.servicesPage.rentalsHeading}</h2>
-              <span className="text-[10px] text-gray-500">{rentals.length} {t.rentals.eyebrow}</span>
+              <span className="text-[10px] text-muted-soft">{rentals.length} {t.rentals.eyebrow}</span>
             </div>
             <div className="grid flex-1 grid-cols-1 gap-2">
               {rentals.map((c) => <CompactCard key={c.title} cat={c} />)}
@@ -186,7 +186,7 @@ export default function ServicesPage() {
         </div>
 
         {/* Footer strip: pricing notes */}
-        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[.06] bg-[#111627] px-5 py-2.5 text-[11px] text-gray-400 lg:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-border bg-surface px-5 py-2.5 text-[11px] text-muted lg:px-8">
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
             {t.servicesPage.pricingPoints.slice(0, 3).map((p) => (
               <li key={p} className="flex items-center gap-1.5">
@@ -196,7 +196,7 @@ export default function ServicesPage() {
             ))}
           </ul>
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-[#FFC300] hover:text-white">
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-[#FFC300] hover:text-[#FFD54F]">
             {t.servicesPage.myFreeQuote}
             <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </a>
