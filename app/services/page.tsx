@@ -13,10 +13,9 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/repair.png",
     intro: t.services.items.repairs.desc,
     items: [
-      { name: "Minor repair (up to 1 hour)", price: "From ƒ60" },
-      { name: "Standard repair (up to 3 hours)", price: "From ƒ150" },
-      { name: "Full-day handyman service", price: "From ƒ400" },
-      { name: "Door / lock repair or replacement", price: "From ƒ120" },
+      { name: "Inspection fee", price: "Cg 55" },
+      { name: "Installation & service (per hour)", price: "Cg 75 + OB 6%" },
+      { name: "Transportation fee", price: "Cg 25–50" },
     ],
   },
   {
@@ -24,10 +23,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/paint.png",
     intro: t.services.items.painting.desc,
     items: [
-      { name: "Single room (walls, 1 coat)", price: "From ƒ350" },
-      { name: "Single room (walls, 2 coats)", price: "From ƒ500" },
-      { name: "Exterior wall (per m²)", price: "From ƒ35/m²" },
-      { name: "Touch-ups & small areas", price: "From ƒ150" },
+      { name: "Painting (per m² — depending on area)", price: "Cg 35–75 + OB 6%" },
     ],
   },
   {
@@ -35,10 +31,8 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/plumb.png",
     intro: t.services.items.plumbing.desc,
     items: [
-      { name: "Leak diagnosis & fix", price: "From ƒ120" },
-      { name: "Toilet / sink installation", price: "From ƒ200" },
-      { name: "Water heater installation", price: "From ƒ350" },
-      { name: "Drain unclogging", price: "From ƒ150" },
+      { name: "Plumbing work (per hour)", price: "Cg 75 + OB 6%" },
+      { name: "Bathroom service (per hour)", price: "Cg 75 + OB 6%" },
     ],
   },
   {
@@ -46,21 +40,18 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/electrical.png",
     intro: t.services.items.electrical.desc,
     items: [
-      { name: "Outlet / switch replacement", price: "From ƒ80" },
-      { name: "Light fixture installation", price: "From ƒ120" },
-      { name: "Ceiling fan installation", price: "From ƒ200" },
-      { name: "Electrical troubleshooting", price: "From ƒ150" },
+      { name: "Outlets & switches (per outlet)", price: "Cg 10–15 + OB 6%" },
     ],
   },
   {
-    title: t.services.items.furniture.title,
+    title: "Windows & Doors",
     image: "/furniture.png",
-    intro: t.services.items.furniture.desc,
+    intro: "Installation of standard and aluminum windows and doors.",
     items: [
-      { name: "Small item (chair, stool, shelf)", price: "From ƒ60" },
-      { name: "Medium item (desk, dresser)", price: "From ƒ120" },
-      { name: "Large item (wardrobe, bed)", price: "From ƒ250" },
-      { name: "Bulk assembly (3+ items)", price: "Custom quote" },
+      { name: "Standard door installation", price: "Cg 175 + OB 6%" },
+      { name: "Standard window installation", price: "Cg 150 + OB 6%" },
+      { name: "Aluminum door installation", price: "Cg 275 + OB 6%" },
+      { name: "Aluminum window installation", price: "Cg 225 + OB 6%" },
     ],
   },
   {
@@ -68,10 +59,8 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/ac.png",
     intro: t.services.items.ac.desc,
     items: [
-      { name: "AC cleaning & service", price: "From ƒ150" },
-      { name: "AC installation (split unit)", price: "From ƒ500" },
-      { name: "Gas recharge", price: "From ƒ250" },
-      { name: "Diagnostic visit", price: "From ƒ100" },
+      { name: "Installation & service (per hour)", price: "Cg 75 + OB 6%" },
+      { name: "Custom quote", price: "Depending on materials" },
     ],
   },
 ];
@@ -82,10 +71,8 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/car.png",
     intro: t.rentals.items.car.desc,
     items: [
-      { name: "Economy car — daily", price: "From ƒ80/day" },
-      { name: "Economy car — weekly", price: "From ƒ500/week" },
-      { name: "SUV — daily", price: "From ƒ130/day" },
-      { name: "SUV — weekly", price: "From ƒ800/week" },
+      { name: "Daily rental", price: "Price on request" },
+      { name: "Weekly rental", price: "Price on request" },
     ],
   },
   {
@@ -93,10 +80,8 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/jet.png",
     intro: t.rentals.items.jet.desc,
     items: [
-      { name: "30 minutes", price: "From ƒ150" },
-      { name: "1 hour", price: "From ƒ250" },
-      { name: "2 hours", price: "From ƒ450" },
-      { name: "Half-day package", price: "From ƒ700" },
+      { name: "Hourly rental", price: "Price on request" },
+      { name: "Half-day / full-day", price: "Price on request" },
     ],
   },
   {
@@ -104,10 +89,9 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
     image: "/quad.png",
     intro: t.rentals.items.quad.desc,
     items: [
-      { name: "1 hour", price: "From ƒ120" },
-      { name: "Half-day (4 hours)", price: "From ƒ350" },
-      { name: "Full day (8 hours)", price: "From ƒ550" },
-      { name: "Group tours (3+ quads)", price: "Custom quote" },
+      { name: "Hourly rental", price: "Price on request" },
+      { name: "Half-day / full-day", price: "Price on request" },
+      { name: "Group tours", price: "Price on request" },
     ],
   },
 ];
