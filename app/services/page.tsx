@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Navbar, Footer, FloatingWhatsApp } from "@/components/dlh";
+import { Navbar, FloatingWhatsApp } from "@/components/dlh";
 import { useT } from "@/lib/i18n";
 
 /* ── Pricing data ── */
@@ -96,39 +96,23 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
 ];
 
-function FreeQuoteBtn() {
-  const { t } = useT();
+function CompactCard({ cat }: { cat: Category }) {
   return (
-    <a
-      href="https://wa.me/59995112097"
-      target="_blank"
-      rel="noreferrer"
-      className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-5 py-2.5 text-xs font-extrabold text-black transition hover:bg-[#FFD54F]"
-    >
-      {t.servicesPage.freeQuote} ›
-    </a>
-  );
-}
-
-function PriceCard({ cat }: { cat: Category }) {
-  return (
-    <div className="flex flex-col overflow-hidden rounded-2xl border border-white/[.07] bg-[#111627] transition hover:-translate-y-1 hover:border-[#FFC300]/30 hover:shadow-[0_8px_40px_rgba(255,195,0,.1)]">
-      <div className="flex h-36 items-center justify-center overflow-hidden border-b border-white/[.05] bg-[#0B0F1A] sm:h-40">
-        <img src={cat.image} alt={cat.title} className="h-full w-auto object-contain" />
+    <div className="flex flex-col rounded-xl border border-white/[.07] bg-[#111627] p-3 transition hover:border-[#FFC300]/30">
+      <div className="flex items-center gap-2">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#0B0F1A]">
+          <img src={cat.image} alt="" className="h-6 w-6 object-contain" />
+        </div>
+        <h3 className="text-[13px] font-bold text-white leading-tight">{cat.title}</h3>
       </div>
-      <div className="flex flex-1 flex-col p-5 sm:p-6">
-        <h3 className="text-lg font-black text-white">{cat.title}</h3>
-        <p className="mt-1 text-xs leading-relaxed text-gray-400">{cat.intro}</p>
-        <ul className="mt-5 flex-1 space-y-3 border-t border-white/[.05] pt-4">
-          {cat.items.map((it) => (
-            <li key={it.name} className="flex items-start justify-between gap-4 text-sm">
-              <span className="text-gray-300">{it.name}</span>
-              <span className="whitespace-nowrap font-bold text-[#FFC300]">{it.price}</span>
-            </li>
-          ))}
-        </ul>
-        <FreeQuoteBtn />
-      </div>
+      <ul className="mt-2 space-y-1 border-t border-white/[.05] pt-2">
+        {cat.items.map((it) => (
+          <li key={it.name} className="flex items-start justify-between gap-2 text-[11px] leading-snug">
+            <span className="text-gray-400">{it.name}</span>
+            <span className="whitespace-nowrap font-bold text-[#FFC300]">{it.price}</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -138,87 +122,71 @@ export default function ServicesPage() {
   const handyman = handymanData(t);
   const rentals = rentalsData(t);
   return (
-    <main className="min-h-screen bg-[#0B0F1A] text-white">
+    <main className="flex h-screen flex-col overflow-hidden bg-[#0B0F1A] text-white">
       <Navbar />
 
-      <section className="border-b border-white/[.06] bg-[#111627] py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <div className="flex items-center gap-2 text-xs font-medium text-gray-400">
-            <Link href="/" className="hover:text-[#FFC300]">{t.nav.home}</Link>
-            <span>›</span>
-            <span className="text-white">{t.servicesPage.breadcrumb}</span>
+      <div className="flex flex-1 flex-col overflow-hidden">
+        {/* Header strip */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[.06] bg-[#111627] px-5 py-3 lg:px-8">
+          <div className="flex items-center gap-3">
+            <Link href="/" className="text-[11px] font-medium text-gray-400 hover:text-[#FFC300]">
+              ‹ {t.nav.home}
+            </Link>
+            <span className="text-gray-600">·</span>
+            <p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#FFC300]">{t.servicesPage.eyebrow}</p>
+            <h1 className="text-base font-black leading-none sm:text-lg">
+              {t.servicesPage.title1} <span className="text-[#FFC300]">{t.servicesPage.title2}</span>
+            </h1>
           </div>
-          <p className="mt-5 text-xs font-bold uppercase tracking-[.3em] text-[#FFC300] sm:mt-6">{t.servicesPage.eyebrow}</p>
-          <h1 className="mt-3 text-3xl font-black leading-tight sm:text-5xl lg:text-6xl">
-            {t.servicesPage.title1} <br /><span className="text-[#FFC300]">{t.servicesPage.title2}</span>
-          </h1>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-300 sm:mt-5 sm:text-base">
-            {t.servicesPage.subtitle}
-          </p>
-          <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap">
-            <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#FFC300] px-6 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]"
-            >
-              💬 {t.common.whatsappNow} ›
-            </a>
+          <div className="flex items-center gap-2">
             <a href="tel:+59995112097"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/20 px-6 py-3.5 text-sm font-bold text-white transition hover:border-white"
-            >
+              className="hidden rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-bold text-white transition hover:border-white sm:inline-flex">
               📞 +5999 511 2097
             </a>
+            <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-[#FFC300] px-3.5 py-1.5 text-[11px] font-extrabold text-black transition hover:bg-[#FFD54F]">
+              💬 {t.common.whatsappNow}
+            </a>
           </div>
         </div>
-      </section>
 
-      <section className="py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.services.eyebrow}</p>
-          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">{t.servicesPage.handyHeading}</h2>
-          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {handyman.map((c) => (
-              <PriceCard key={c.title} cat={c} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-white/[.06] bg-[#111627] py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl px-5 lg:px-8">
-          <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.rentals.eyebrow}</p>
-          <h2 className="mt-3 text-2xl font-black sm:text-3xl lg:text-4xl">{t.servicesPage.rentalsHeading}</h2>
-          <div className="mt-8 grid gap-5 sm:mt-10 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-            {rentals.map((c) => (
-              <PriceCard key={c.title} cat={c} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 sm:py-16 lg:py-20">
-        <div className="mx-auto max-w-4xl px-5 lg:px-8">
-          <div className="rounded-3xl border border-white/[.07] bg-[#111627] p-6 sm:p-8 lg:p-12">
-            <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{t.servicesPage.pricingEyebrow}</p>
-            <h3 className="mt-3 text-2xl font-black sm:text-3xl">{t.servicesPage.pricingHeading}</h3>
-            <ul className="mt-6 space-y-3 text-sm leading-7 text-gray-300">
-              {t.servicesPage.pricingPoints.map((p) => (
-                <li key={p} className="flex gap-3"><span className="text-[#FFC300]">✓</span> {p}</li>
-              ))}
-            </ul>
-            <div className="mt-8">
-              <a
-                href="https://wa.me/59995112097"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#FFC300] px-7 py-3.5 text-sm font-extrabold text-black transition hover:bg-[#FFD54F]"
-              >
-                💬 {t.servicesPage.myFreeQuote} ›
-              </a>
+        {/* Main grid: handyman (left, larger) + rentals (right, smaller) */}
+        <div className="grid flex-1 grid-cols-1 gap-3 overflow-auto px-5 py-4 lg:grid-cols-12 lg:gap-4 lg:overflow-hidden lg:px-8">
+          <section className="flex flex-col lg:col-span-8">
+            <div className="mb-2 flex items-baseline justify-between">
+              <h2 className="text-sm font-black uppercase tracking-wide">{t.servicesPage.handyHeading}</h2>
+              <span className="text-[10px] text-gray-500">{handyman.length} {t.services.eyebrow}</span>
             </div>
-          </div>
-        </div>
-      </section>
+            <div className="grid flex-1 grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {handyman.map((c) => <CompactCard key={c.title} cat={c} />)}
+            </div>
+          </section>
 
-      <Footer />
+          <section className="flex flex-col lg:col-span-4">
+            <div className="mb-2 flex items-baseline justify-between">
+              <h2 className="text-sm font-black uppercase tracking-wide">{t.servicesPage.rentalsHeading}</h2>
+              <span className="text-[10px] text-gray-500">{rentals.length} {t.rentals.eyebrow}</span>
+            </div>
+            <div className="grid flex-1 grid-cols-1 gap-2">
+              {rentals.map((c) => <CompactCard key={c.title} cat={c} />)}
+            </div>
+          </section>
+        </div>
+
+        {/* Footer strip: pricing notes */}
+        <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[.06] bg-[#111627] px-5 py-2.5 text-[11px] text-gray-400 lg:px-8">
+          <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            {t.servicesPage.pricingPoints.slice(0, 3).map((p) => (
+              <li key={p} className="flex items-center gap-1.5"><span className="text-[#FFC300]">✓</span> {p}</li>
+            ))}
+          </ul>
+          <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#FFC300] hover:text-[#FFD54F]">
+            {t.servicesPage.myFreeQuote} ›
+          </a>
+        </div>
+      </div>
+
       <FloatingWhatsApp />
     </main>
   );
