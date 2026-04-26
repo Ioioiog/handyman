@@ -1,4 +1,5 @@
 "use client";
+import { useRef, useState } from "react";
 import {
   Navbar,
   Hero,
@@ -103,26 +104,8 @@ export default function Page() {
               </ul>
             </div>
 
-            {/* Right — locations */}
-            <div className="relative overflow-hidden rounded-2xl border border-white/[.07]"
-              style={{ backgroundImage: "url(https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80)", backgroundSize: "cover", backgroundPosition: "center" }}>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-              <div className="relative flex h-full min-h-[300px] flex-col justify-between p-5 sm:min-h-[380px] sm:p-6">
-                <div className="flex items-center justify-center flex-1">
-                  <div className="flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-[#FFC300] text-black shadow-lg transition hover:scale-110">
-                    <span className="ml-1 text-2xl font-bold">▶</span>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-sm font-bold text-white">{t.why.locations}</p>
-                  <div className="mt-2 flex flex-wrap gap-2">
-                    {locations.map((l) => (
-                      <span key={l} className="rounded-full bg-white/10 px-3 py-1 text-xs text-white backdrop-blur-sm">{l}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+            {/* Right — video */}
+            <VideoCard locations={locations} caption={t.why.locations} />
           </div>
         </div>
       </section>
@@ -225,5 +208,55 @@ export default function Page() {
       <Footer />
       <FloatingWhatsApp />
     </main>
+  );
+}
+
+/* ── About-us video card with big yellow play button ── */
+function VideoCard({ locations, caption }: { locations: string[]; caption: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+  const toggle = () => {
+    const v = ref.current;
+    if (!v) return;
+    if (v.paused) { v.play(); setPlaying(true); }
+    else { v.pause(); setPlaying(false); }
+  };
+  return (
+    <div className="relative overflow-hidden rounded-2xl border border-white/[.07] bg-black">
+      <video
+        ref={ref}
+        src="/0426.mp4"
+        playsInline
+        preload="metadata"
+        onClick={toggle}
+        onPlay={() => setPlaying(true)}
+        onPause={() => setPlaying(false)}
+        className="h-full w-full cursor-pointer object-cover"
+      />
+      {/* Play button overlay */}
+      {!playing && (
+        <button
+          type="button"
+          onClick={toggle}
+          aria-label="Play video"
+          className="absolute inset-0 flex items-center justify-center bg-black/30 transition hover:bg-black/20"
+        >
+          <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#FFC300] text-black shadow-2xl shadow-yellow-500/40 transition hover:scale-110 sm:h-28 sm:w-28">
+            <svg viewBox="0 0 24 24" className="ml-1 h-10 w-10 sm:h-12 sm:w-12" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </span>
+        </button>
+      )}
+      {/* Caption overlay */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-5 sm:p-6">
+        <p className="text-sm font-bold text-white">{caption}</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {locations.map((l) => (
+            <span key={l} className="rounded-full bg-white/10 px-3 py-1 text-xs text-white backdrop-blur-sm">{l}</span>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }
