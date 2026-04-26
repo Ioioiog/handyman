@@ -1,15 +1,16 @@
 "use client";
 import Link from "next/link";
-import { Navbar, FloatingWhatsApp } from "@/components/dlh";
+import { Navbar, FloatingWhatsApp, SERVICE_ICONS } from "@/components/dlh";
 import { useT } from "@/lib/i18n";
 
 /* ── Pricing data ── */
 type Item = { name: string; price: string };
-type Category = { title: string; image: string; intro: string; items: Item[] };
+type Category = { title: string; slug: string; image: string; intro: string; items: Item[] };
 
 const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   {
     title: t.services.items.repairs.title,
+    slug: "repairs",
     image: "/repair.png",
     intro: t.services.items.repairs.desc,
     items: [
@@ -20,6 +21,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: t.services.items.painting.title,
+    slug: "painting",
     image: "/paint.png",
     intro: t.services.items.painting.desc,
     items: [
@@ -28,6 +30,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: t.services.items.plumbing.title,
+    slug: "plumbing",
     image: "/plumb.png",
     intro: t.services.items.plumbing.desc,
     items: [
@@ -37,6 +40,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: t.services.items.electrical.title,
+    slug: "electrical",
     image: "/electrical.png",
     intro: t.services.items.electrical.desc,
     items: [
@@ -45,6 +49,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: "Windows & Doors",
+    slug: "furniture",
     image: "/furniture.png",
     intro: "Installation of standard and aluminum windows and doors.",
     items: [
@@ -56,6 +61,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: t.services.items.ac.title,
+    slug: "ac",
     image: "/ac.png",
     intro: t.services.items.ac.desc,
     items: [
@@ -68,6 +74,7 @@ const handymanData = (t: ReturnType<typeof useT>["t"]): Category[] => [
 const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   {
     title: t.rentals.items.car.title,
+    slug: "car",
     image: "/car.png",
     intro: t.rentals.items.car.desc,
     items: [
@@ -77,6 +84,7 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: t.rentals.items.jet.title,
+    slug: "jet",
     image: "/jet.png",
     intro: t.rentals.items.jet.desc,
     items: [
@@ -86,6 +94,7 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
   },
   {
     title: t.rentals.items.quad.title,
+    slug: "quad",
     image: "/quad.png",
     intro: t.rentals.items.quad.desc,
     items: [
@@ -98,18 +107,18 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
 
 function CompactCard({ cat }: { cat: Category }) {
   return (
-    <div className="flex flex-col rounded-xl border border-white/[.07] bg-[#111627] p-3 transition hover:border-[#FFC300]/30">
+    <div className="flex flex-col rounded-sm border border-white/10 bg-[#0E1322] p-3 transition hover:border-[#FFC300]/40">
       <div className="flex items-center gap-2">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#0B0F1A]">
-          <img src={cat.image} alt="" className="h-6 w-6 object-contain" />
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-white/10 text-[#FFC300]">
+          <span className="block h-5 w-5">{SERVICE_ICONS[cat.slug] ?? null}</span>
         </div>
-        <h3 className="text-[13px] font-bold text-white leading-tight">{cat.title}</h3>
+        <h3 className="font-display text-[14px] font-normal text-white leading-tight">{cat.title}</h3>
       </div>
       <ul className="mt-2 space-y-1 border-t border-white/[.05] pt-2">
         {cat.items.map((it) => (
           <li key={it.name} className="flex items-start justify-between gap-2 text-[11px] leading-snug">
             <span className="text-gray-400">{it.name}</span>
-            <span className="whitespace-nowrap font-bold text-[#FFC300]">{it.price}</span>
+            <span className="whitespace-nowrap font-semibold text-[#FFC300]">{it.price}</span>
           </li>
         ))}
       </ul>
@@ -129,23 +138,26 @@ export default function ServicesPage() {
         {/* Header strip */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/[.06] bg-[#111627] px-5 py-3 lg:px-8">
           <div className="flex items-center gap-3">
-            <Link href="/" className="text-[11px] font-medium text-gray-400 hover:text-[#FFC300]">
-              ‹ {t.nav.home}
+            <Link href="/" className="inline-flex items-center gap-1.5 text-[11px] font-medium text-gray-400 transition hover:text-white">
+              <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M19 12H5M11 18l-6-6 6-6" /></svg>
+              {t.nav.home}
             </Link>
-            <span className="text-gray-600">·</span>
-            <p className="text-[10px] font-bold uppercase tracking-[.25em] text-[#FFC300]">{t.servicesPage.eyebrow}</p>
-            <h1 className="text-base font-black leading-none sm:text-lg">
-              {t.servicesPage.title1} <span className="text-[#FFC300]">{t.servicesPage.title2}</span>
+            <span className="text-gray-700">/</span>
+            <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">{t.servicesPage.eyebrow}</p>
+            <h1 className="font-display text-base font-normal leading-none text-white sm:text-lg">
+              {t.servicesPage.title1} <span className="italic text-white/60">{t.servicesPage.title2}</span>
             </h1>
           </div>
           <div className="flex items-center gap-2">
             <a href="tel:+59995112097"
-              className="hidden rounded-full border border-white/20 px-3 py-1.5 text-[11px] font-bold text-white transition hover:border-white sm:inline-flex">
-              📞 +5999 511 2097
+              className="hidden items-center gap-1.5 rounded-sm border border-white/20 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white transition hover:border-white/60 sm:inline-flex">
+              <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+              +5999 511 2097
             </a>
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-[#FFC300] px-3.5 py-1.5 text-[11px] font-extrabold text-black transition hover:bg-[#FFD54F]">
-              💬 {t.common.whatsappNow}
+              className="inline-flex items-center gap-1.5 rounded-sm bg-[#FFC300] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-black transition hover:bg-white">
+              {t.common.whatsappNow}
+              <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
           </div>
         </div>
@@ -175,14 +187,18 @@ export default function ServicesPage() {
 
         {/* Footer strip: pricing notes */}
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[.06] bg-[#111627] px-5 py-2.5 text-[11px] text-gray-400 lg:px-8">
-          <ul className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
             {t.servicesPage.pricingPoints.slice(0, 3).map((p) => (
-              <li key={p} className="flex items-center gap-1.5"><span className="text-[#FFC300]">✓</span> {p}</li>
+              <li key={p} className="flex items-center gap-1.5">
+                <svg viewBox="0 0 24 24" className="h-3 w-3 text-[#FFC300]" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 13l4 4L19 7" /></svg>
+                {p}
+              </li>
             ))}
           </ul>
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-[11px] font-bold text-[#FFC300] hover:text-[#FFD54F]">
-            {t.servicesPage.myFreeQuote} ›
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-[#FFC300] hover:text-white">
+            {t.servicesPage.myFreeQuote}
+            <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </a>
         </div>
       </div>

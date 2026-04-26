@@ -27,7 +27,9 @@ const config: Config = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', 'SF Pro Display', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'ui-serif', 'Georgia', 'serif'],
+        serif: ['var(--font-display)', 'ui-serif', 'Georgia', 'serif'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

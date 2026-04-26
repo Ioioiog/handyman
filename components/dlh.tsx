@@ -31,25 +31,27 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0B0F1A]/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 sm:gap-2.5">
-          <span className="text-xl font-black tracking-tight text-[#FFC300] sm:text-2xl">DLH</span>
-          <span className="text-[10px] font-bold uppercase leading-tight tracking-widest text-white sm:text-[11px]">Diligence<br/>Local Handyman</span>
+        <Link href="/" className="flex items-center gap-2.5">
+          <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#FFC300] font-display text-[12px] font-semibold tracking-tight text-black">DLH</span>
+          <span className="hidden text-[11px] font-medium uppercase leading-tight tracking-[.18em] text-white/90 sm:block">Diligence Local Handyman</span>
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((l) => (
-            <a key={l.key} href={l.href} className="text-[13px] font-semibold text-gray-300 transition hover:text-[#FFC300]">{l.label}</a>
+            <a key={l.key} href={l.href} className="text-[13px] font-medium tracking-wide text-gray-300 transition hover:text-white">{l.label}</a>
           ))}
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher />
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="hidden md:inline-flex items-center gap-2 rounded-full border-2 border-[#FFC300] px-4 py-2 text-sm font-bold text-white transition hover:bg-[#FFC300] hover:text-black lg:px-5">
+            className="hidden md:inline-flex items-center gap-2 rounded-sm border border-white/20 px-4 py-2 text-[12px] font-semibold tracking-wide text-white transition hover:border-[#FFC300] hover:text-[#FFC300]">
             <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
           </a>
-          <button onClick={() => setOpen(!open)} aria-label="Menu" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/10 text-white lg:hidden">
-            <span className="text-xl">{open ? "✕" : "☰"}</span>
+          <button onClick={() => setOpen(!open)} aria-label="Menu" className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-white/10 text-white lg:hidden">
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
+              {open ? <path d="M6 6l12 12M6 18L18 6" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
+            </svg>
           </button>
         </div>
       </div>
@@ -58,11 +60,11 @@ export function Navbar() {
         <div className="border-t border-white/10 bg-[#0B0F1A] px-5 pb-6 pt-4 lg:hidden">
           {navLinks.map((l) => (
             <a key={l.key} href={l.href} onClick={() => setOpen(false)}
-              className="block py-3 text-sm font-semibold text-gray-300 transition hover:text-[#FFC300]">{l.label}</a>
+              className="block border-b border-white/5 py-3 text-sm font-medium text-gray-300 transition hover:text-white">{l.label}</a>
           ))}
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-[#FFC300] py-3 text-sm font-bold text-black">
-            <WhatsAppSVG cls="h-4 w-4" /> WhatsApp +5999 511 2097
+            className="mt-5 flex items-center justify-center gap-2 rounded-sm bg-[#FFC300] py-3 text-sm font-semibold text-black">
+            <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
           </a>
         </div>
       )}
@@ -89,25 +91,23 @@ function LanguageSwitcher() {
       <button
         onClick={() => setOpen(!open)}
         aria-label="Change language"
-        className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-white/[.03] px-3 py-2 text-xs font-bold text-white transition hover:border-[#FFC300]/50 hover:bg-white/5"
+        className="inline-flex items-center gap-1.5 rounded-sm border border-white/15 px-2.5 py-1.5 text-[11px] font-semibold tracking-wider text-white transition hover:border-white/40"
       >
-        <span className="text-sm leading-none">{LANG_META[lang].flag}</span>
-        <span className="tracking-wider">{LANG_META[lang].label}</span>
-        <svg viewBox="0 0 24 24" className={`h-3 w-3 transition ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <span>{LANG_META[lang].label}</span>
+        <svg viewBox="0 0 24 24" className={`h-3 w-3 transition ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="6 9 12 15 18 9" />
         </svg>
       </button>
       {open && (
-        <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-xl border border-white/10 bg-[#111627] shadow-2xl">
+        <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-sm border border-white/10 bg-[#111627] shadow-xl">
           {(Object.keys(LANG_META) as Lang[]).map((code) => (
             <button
               key={code}
               onClick={() => { setLang(code); setOpen(false); }}
-              className={`flex w-full items-center gap-3 px-4 py-3 text-left text-sm transition hover:bg-white/5 ${lang === code ? "bg-white/[.03] text-[#FFC300]" : "text-gray-300"}`}
+              className={`flex w-full items-center justify-between px-4 py-3 text-left text-sm transition hover:bg-white/5 ${lang === code ? "text-white" : "text-gray-400"}`}
             >
-              <span className="text-base leading-none">{LANG_META[code].flag}</span>
-              <span className="font-semibold">{LANG_META[code].name}</span>
-              {lang === code && <span className="ml-auto text-[#FFC300]">✓</span>}
+              <span className="font-medium">{LANG_META[code].name}</span>
+              <span className="text-[10px] tracking-[.15em] text-gray-500">{LANG_META[code].label}</span>
             </button>
           ))}
         </div>
@@ -179,26 +179,27 @@ export function Hero() {
           )}
         </button>
 
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/60 to-transparent sm:via-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/70 to-transparent pointer-events-none" />
 
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-4 pb-6 sm:left-auto sm:w-1/2 sm:px-6 sm:pb-12 lg:px-16 sm:text-right">
-          <p className="text-[9px] font-bold uppercase tracking-[.25em] text-[#FFC300] sm:text-xs sm:tracking-[.3em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-2 text-[26px] font-black leading-[1.1] text-white sm:text-4xl lg:text-5xl">
+        <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-8 sm:left-auto sm:w-1/2 sm:px-8 sm:pb-14 lg:px-16 lg:pb-20 sm:text-right">
+          <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-white/70 sm:text-[11px] sm:tracking-[.28em]">{t.hero.eyebrow}</p>
+          <h1 className="mt-4 font-display text-[34px] font-normal leading-[1.05] text-white sm:text-5xl lg:text-[64px]">
             {t.hero.title1}<br />
-            <span className="text-[#FFC300]">{t.hero.title2}</span>
+            <span className="italic text-white/60">{t.hero.title2}</span>
           </h1>
-          <p className="mt-2 max-w-sm text-xs leading-relaxed text-gray-300 sm:mt-3 sm:ml-auto sm:text-sm">
+          <p className="mt-5 max-w-sm text-sm leading-relaxed text-gray-300 sm:ml-auto">
             {t.hero.subtitle}
           </p>
 
-          <div className="mt-4 flex flex-row flex-wrap items-center gap-2 sm:mt-6 sm:justify-end sm:gap-3">
+          <div className="mt-7 flex flex-row flex-wrap items-center gap-4 sm:justify-end sm:gap-6">
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full bg-[#FFC300] px-3.5 py-2.5 text-[12px] font-extrabold text-black shadow-lg shadow-yellow-500/25 transition hover:bg-[#FFD54F] hover:scale-[1.03] sm:flex-initial sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm">
-              <WhatsAppSVG cls="h-4 w-4 sm:h-5 sm:w-5" /> {t.hero.whatsapp} ›
+              className="inline-flex items-center gap-2 rounded-sm bg-[#FFC300] px-5 py-3 text-[12px] font-semibold tracking-wide text-black transition hover:bg-white sm:px-7 sm:text-[13px]">
+              <WhatsAppSVG cls="h-4 w-4" /> {t.hero.whatsapp}
             </a>
             <a href="#services"
-              className="inline-flex flex-1 items-center justify-center gap-1.5 rounded-full border-2 border-white/40 bg-white/10 px-3.5 py-2.5 text-[12px] font-bold text-white backdrop-blur-sm transition hover:border-[#FFC300] hover:text-[#FFC300] sm:flex-initial sm:gap-2 sm:px-7 sm:py-3.5 sm:text-sm">
-              {t.hero.services} ›
+              className="inline-flex items-center gap-2 border-b border-white/60 pb-1 text-[12px] font-semibold tracking-wide text-white transition hover:border-[#FFC300] hover:text-[#FFC300] sm:text-[13px]">
+              {t.hero.services}
+              <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
           </div>
         </div>
@@ -214,36 +215,64 @@ export function TrustStrip() { return null; }
 export function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-xs font-bold uppercase tracking-[.3em] text-[#FFC300]">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-black leading-tight text-white sm:text-5xl">{title}</h2>
-      {description && <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg">{description}</p>}
+      <p className="text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">{eyebrow}</p>
+      <h2 className="mt-4 font-display text-3xl font-normal leading-[1.1] text-white sm:text-5xl">{title}</h2>
+      {description && <p className="mt-5 text-base leading-7 text-gray-400">{description}</p>}
     </div>
   );
 }
 
+/* ─────────────────── SERVICE ICON MAP ─────────────────── */
+export const SERVICE_ICONS: Record<string, React.ReactNode> = {
+  repairs: <WrenchIcon />,
+  painting: <PaintIcon />,
+  plumbing: <DropletIcon />,
+  electrical: <PlugIcon />,
+  furniture: <SofaIcon />,
+  ac: <SnowflakeIcon />,
+  car: <CarIcon />,
+  jet: <JetskiIcon />,
+  quad: <QuadIcon />,
+};
+
 /* ─────────────────── SERVICE CARD ─────────────────── */
-export function ServiceCard({ title, description, image }: { title: string; description: string; image: string }) {
+export function ServiceCard({ title, description, slug, index, image }: { title: string; description: string; slug?: string; index?: number; image?: string }) {
   const { t } = useT();
+  const icon = slug ? SERVICE_ICONS[slug] : null;
   return (
     <a
       href="https://wa.me/59995112097"
       target="_blank"
       rel="noreferrer"
-      className="group flex flex-col overflow-hidden rounded-2xl border border-white/[.07] bg-black transition duration-300 hover:-translate-y-1 hover:border-[#FFC300]/30 hover:shadow-[0_8px_40px_rgba(255,195,0,.15)]"
+      className="group relative flex flex-col overflow-hidden rounded-sm border border-white/10 bg-[#0B0F1A] p-5 transition hover:border-[#FFC300]/50 sm:p-6"
     >
-      <div className="relative flex aspect-square items-center justify-center overflow-hidden bg-black">
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105"
-        />
-      </div>
-      <div className="flex flex-1 flex-col p-4 sm:p-5">
-        <h3 className="text-sm font-black leading-tight text-white sm:text-base">{title}</h3>
-        <p className="mt-1.5 flex-1 text-xs leading-relaxed text-gray-400">{description}</p>
-        <div className="mt-3 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider text-[#FFC300] transition group-hover:gap-2.5">
-          {t.services.learnMore} <span>›</span>
+      {/* Hover image reveal */}
+      {image && (
+        <>
+          <img
+            src={image}
+            alt=""
+            aria-hidden
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/70 to-[#0B0F1A]/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        </>
+      )}
+
+      {/* Foreground content */}
+      <div className="relative flex items-start justify-between">
+        <div className="flex h-11 w-11 items-center justify-center border border-white/10 text-[#FFC300] transition group-hover:border-[#FFC300]/60 group-hover:bg-[#FFC300] group-hover:text-black">
+          {icon ?? <WrenchIcon />}
         </div>
+        {typeof index === "number" && (
+          <span className="font-display text-[11px] tracking-wider text-gray-500">{String(index).padStart(2, "0")}</span>
+        )}
+      </div>
+      <h3 className="relative mt-6 font-display text-lg font-normal leading-snug text-white sm:text-xl">{title}</h3>
+      <p className="relative mt-2 flex-1 text-[13px] leading-relaxed text-gray-400 transition group-hover:text-gray-200">{description}</p>
+      <div className="relative mt-5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[.18em] text-[#FFC300] transition group-hover:gap-2.5">
+        {t.services.learnMore}
+        <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
       </div>
     </a>
   );
@@ -258,10 +287,16 @@ export function MiniFeature({ title, subtitle }: { title: string; subtitle: stri
 }
 export function TestimonialCard({ quote, name }: { quote: string; name: string }) {
   return (
-    <div className="rounded-2xl border border-white/[.07] bg-[#111627] p-8">
-      <div className="text-[#FFC300] text-lg tracking-wider mb-4">★ ★ ★ ★ ★</div>
-      <p className="text-[17px] leading-8 text-gray-200">&ldquo;{quote}&rdquo;</p>
-      <p className="mt-5 text-sm font-semibold text-gray-500">— {name}</p>
+    <div className="flex flex-col rounded-sm border border-white/10 bg-[#0B0F1A] p-7 sm:p-8">
+      <div className="flex gap-1 text-[#FFC300]">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <svg key={i} viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor">
+            <path d="M12 2l2.9 7h7l-5.7 4.3 2.2 7L12 16l-6.4 4.3 2.2-7L2 9h7z" />
+          </svg>
+        ))}
+      </div>
+      <p className="mt-5 font-display text-lg leading-[1.5] text-gray-200">&ldquo;{quote}&rdquo;</p>
+      <p className="mt-6 text-[11px] font-semibold uppercase tracking-[.18em] text-gray-500">— {name}</p>
     </div>
   );
 }
@@ -270,14 +305,12 @@ export function TestimonialCard({ quote, name }: { quote: string; name: string }
 export function Footer() {
   const { t } = useT();
   return (
-    <footer id="contact" className="relative border-t border-white/10 bg-gradient-to-b from-[#060911] to-[#030508]">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#FFC300]/40 to-transparent" />
-
-      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-2 sm:gap-12 sm:py-16 lg:grid-cols-12 lg:px-8">
+    <footer id="contact" className="relative border-t border-white/10 bg-[#060911]">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 sm:gap-12 sm:py-20 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="text-3xl font-black tracking-tight text-[#FFC300]">DLH</span>
-            <span className="text-[11px] font-bold uppercase leading-tight tracking-widest text-white">Diligence<br/>Local Handyman</span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#FFC300] font-display text-[14px] font-semibold tracking-tight text-black">DLH</span>
+            <span className="font-display text-base text-white">Diligence Local Handyman</span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-gray-400">
             {t.footer.tagline}
@@ -323,7 +356,7 @@ export function Footer() {
           <ul className="space-y-4 text-sm text-gray-400">
             <li>
               <a href="tel:+59995112097" className="group flex items-start gap-3 transition hover:text-white">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
                   <PhoneIcon />
                 </span>
                 <span>
@@ -334,7 +367,7 @@ export function Footer() {
             </li>
             <li>
               <a href="mailto:Lokalhandyman84@gmail.com" className="group flex items-start gap-3 transition hover:text-white">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-white/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
                   <MailIcon />
                 </span>
                 <span>
@@ -344,7 +377,7 @@ export function Footer() {
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white/5 text-[#FFC300]">
+              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-white/5 text-[#FFC300]">
                 <PinIcon />
               </span>
               <span>
@@ -384,8 +417,8 @@ function SocialIconLink({ href, label, children }: { href: string; label: string
 export function FloatingWhatsApp() {
   return (
     <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer" aria-label="WhatsApp"
-      className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-green-500/30 transition hover:scale-110 sm:bottom-5 sm:right-5">
-      <WhatsAppSVG cls="h-7 w-7" />
+      className="fixed bottom-5 right-5 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-1 ring-black/10 transition hover:bg-[#1FB559]">
+      <WhatsAppSVG cls="h-6 w-6" />
     </a>
   );
 }
