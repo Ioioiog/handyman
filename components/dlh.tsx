@@ -119,11 +119,66 @@ function LanguageSwitcher() {
 /* ─────────────────── HERO ─────────────────── */
 export function Hero() {
   const { t } = useT();
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [muted, setMuted] = React.useState(false);
+  React.useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.play().then(() => setMuted(false)).catch(() => {
+      v.muted = true;
+      setMuted(true);
+      v.play().catch(() => {});
+      const unmute = () => {
+        if (!videoRef.current) return;
+        videoRef.current.muted = false;
+        setMuted(false);
+        videoRef.current.play().catch(() => {});
+        cleanup();
+      };
+      const cleanup = () => {
+        ["click", "touchstart", "keydown", "scroll", "pointerdown"].forEach(e =>
+          window.removeEventListener(e, unmute)
+        );
+      };
+      ["click", "touchstart", "keydown", "scroll", "pointerdown"].forEach(e =>
+        window.addEventListener(e, unmute, { once: true, passive: true })
+      );
+      return cleanup;
+    });
+  }, []);
+  const toggleMute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = !v.muted;
+    setMuted(v.muted);
+    if (!v.muted) v.play().catch(() => {});
+  };
   return (
     <section id="home" className="relative bg-[#0B0F1A]">
       <div className="relative w-full overflow-hidden">
-        <img src="/hero.png" alt="Diligence Local Handyman"
-          className="w-full h-auto min-h-[360px] sm:min-h-[420px] object-cover object-center" />
+        <video
+          ref={videoRef}
+          src="/talkhero.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-label="Diligence Local Handyman"
+          className="w-full h-auto min-h-[360px] sm:min-h-[420px] object-cover object-center"
+        />
+        <button
+          onClick={toggleMute}
+          aria-label={muted ? "Unmute video" : "Mute video"}
+          className="absolute top-3 right-3 z-20 inline-flex h-10 w-10 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-sm ring-1 ring-white/20 transition hover:bg-[#FFC300] hover:text-black sm:top-5 sm:right-5 sm:h-12 sm:w-12"
+        >
+          {muted ? (
+            <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10H3zm13.59 2L20 8.41 18.59 7 15 10.59 11.41 7 10 8.41 13.59 12 10 15.59 11.41 17 15 13.41 18.59 17 20 15.59 16.41 12z"/></svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="h-5 w-5 sm:h-6 sm:w-6" fill="currentColor"><path d="M3 10v4h4l5 5V5L7 10H3zm13.5 2a4.5 4.5 0 0 0-2.5-4.03v8.05A4.5 4.5 0 0 0 16.5 12zM14 3.23v2.06a7 7 0 0 1 0 13.42v2.06a9 9 0 0 0 0-17.54z"/></svg>
+          )}
+        </button>
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0F1A] via-[#0B0F1A]/60 to-transparent sm:via-transparent pointer-events-none" />
 
