@@ -107,9 +107,9 @@ const rentalsData = (t: ReturnType<typeof useT>["t"]): Category[] => [
 
 function CompactCard({ cat }: { cat: Category }) {
   return (
-    <div className="flex flex-col rounded-sm border border-border bg-surface-2 p-3 transition hover:border-[#FFC300]/40">
+    <div className="flex flex-col rounded-sm border border-border bg-surface-2 p-3 transition hover:border-[#0057B8]/50">
       <div className="flex items-center gap-2">
-        <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-border text-[#FFC300]">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center border border-border text-[#FFD100]">
           <span className="block h-5 w-5">{SERVICE_ICONS[cat.slug] ?? null}</span>
         </div>
         <h3 className="font-display text-[14px] font-normal text-fg leading-tight">{cat.title}</h3>
@@ -118,7 +118,7 @@ function CompactCard({ cat }: { cat: Category }) {
         {cat.items.map((it) => (
           <li key={it.name} className="flex items-start justify-between gap-2 text-[11px] leading-snug">
             <span className="text-muted">{it.name}</span>
-            <span className="whitespace-nowrap font-semibold text-[#FFC300]">{it.price}</span>
+            <span className="whitespace-nowrap font-semibold text-[#FFD100]">{it.price}</span>
           </li>
         ))}
       </ul>
@@ -143,7 +143,7 @@ export default function ServicesPage() {
               {t.nav.home}
             </Link>
             <span className="text-muted-soft">/</span>
-            <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">{t.servicesPage.eyebrow}</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">{t.servicesPage.eyebrow}</p>
             <h1 className="font-display text-base font-normal leading-none text-fg sm:text-lg">
               {t.servicesPage.title1} <span className="italic text-fg/60">{t.servicesPage.title2}</span>
             </h1>
@@ -155,7 +155,7 @@ export default function ServicesPage() {
               +5999 511 2097
             </a>
             <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-sm bg-[#FFC300] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-black transition hover:bg-[#FFD54F]">
+              className="inline-flex items-center gap-1.5 rounded-sm bg-[#FFD100] px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-black transition hover:bg-[#FFE166]">
               {t.common.whatsappNow}
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
@@ -190,13 +190,13 @@ export default function ServicesPage() {
           <ul className="flex flex-wrap items-center gap-x-5 gap-y-1">
             {t.servicesPage.pricingPoints.slice(0, 3).map((p) => (
               <li key={p} className="flex items-center gap-1.5">
-                <svg viewBox="0 0 24 24" className="h-3 w-3 text-[#FFC300]" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 13l4 4L19 7" /></svg>
+                <svg viewBox="0 0 24 24" className="h-3 w-3 text-[#FFD100]" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 13l4 4L19 7" /></svg>
                 {p}
               </li>
             ))}
           </ul>
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-[#FFC300] hover:text-[#FFD54F]">
+            className="inline-flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-[#FFD100] hover:text-[#FFE166]">
             {t.servicesPage.myFreeQuote}
             <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
           </a>

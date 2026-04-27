@@ -19,19 +19,24 @@ const config: Config = {
         'muted-soft': 'var(--muted-soft)',
         border: 'var(--border)',
         'border-strong': 'var(--border-strong)',
+        brand: {
+          DEFAULT: 'var(--brand)',
+          2: 'var(--brand-2)',
+          navy: '#002D72',
+          blue: '#0057B8',
+        },
         primary: {
-          DEFAULT: '#0B0F1A',
-          dark: '#060911',
-          light: '#1a1f2e',
+          DEFAULT: '#050B16',
+          dark: '#020610',
+          light: '#0B1530',
         },
         accent: {
-          DEFAULT: '#FFC300',
-          light: '#FFD54F',
-          dark: '#FFB300',
+          DEFAULT: '#FFD100',
+          light: '#FFE166',
+          dark: '#E6BC00',
         },
         neon: {
-          blue: '#00D9FF',
-          purple: '#B537F2',
+          blue: '#0057B8',
           green: '#25D366',
         }
       },
@@ -43,13 +48,14 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'gradient-mesh': 'linear-gradient(135deg, #0B0F1A 0%, #1a1f2e 50%, #0B0F1A 100%)',
+        'gradient-mesh': 'linear-gradient(135deg, #050B16 0%, #002D72 50%, #050B16 100%)',
       },
       boxShadow: {
-        'glow': '0 0 20px rgba(255, 195, 0, 0.3)',
-        'glow-lg': '0 0 40px rgba(255, 195, 0, 0.4)',
-        'neon': '0 0 10px rgba(0, 217, 255, 0.5)',
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
+        'glow': '0 0 20px rgba(0, 87, 184, 0.35)',
+        'glow-lg': '0 0 40px rgba(0, 87, 184, 0.45)',
+        'glow-accent': '0 0 24px rgba(255, 209, 0, 0.35)',
+        'neon': '0 0 10px rgba(0, 87, 184, 0.5)',
+        'glass': '0 8px 32px 0 rgba(0, 45, 114, 0.30)',
       },
       backdropBlur: {
         xs: '2px',
@@ -66,8 +72,8 @@ const config: Config = {
           '50%': { transform: 'translateY(-20px)' },
         },
         'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(255, 195, 0, 0.3)' },
-          '50%': { boxShadow: '0 0 40px rgba(255, 195, 0, 0.6)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(0, 87, 184, 0.35)' },
+          '50%': { boxShadow: '0 0 40px rgba(0, 87, 184, 0.6)' },
         },
         'slide-up': {
           '0%': { transform: 'translateY(100px)', opacity: '0' },

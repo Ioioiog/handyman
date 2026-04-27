@@ -39,17 +39,17 @@ const locations = [
 export default function Page() {
   const { t } = useT();
   const services = [
-    { ...t.services.items.repairs, slug: "repairs", image: "/repair.png" },
-    { ...t.services.items.painting, slug: "painting", image: "/paint.png" },
-    { ...t.services.items.plumbing, slug: "plumbing", image: "/plumb.png" },
-    { ...t.services.items.electrical, slug: "electrical", image: "/electrical.png" },
-    { ...t.services.items.furniture, slug: "furniture", image: "/furniture.png" },
-    { ...t.services.items.ac, slug: "ac", image: "/ac.png" },
+    { ...t.services.items.repairs, slug: "repairs", image: "/repair1.png" },
+    { ...t.services.items.painting, slug: "painting", image: "/paint1.png" },
+    { ...t.services.items.plumbing, slug: "plumbing", image: "/plumb1.png" },
+    { ...t.services.items.electrical, slug: "electrical", image: "/electrical11.png" },
+    { ...t.services.items.furniture, slug: "furniture", image: "/furniture11.png" },
+    { ...t.services.items.ac, slug: "ac", image: "/ac11.png" },
   ];
   const rentals = [
-    { ...t.rentals.items.car, slug: "car", image: "/car.png" },
-    { ...t.rentals.items.jet, slug: "jet", image: "/jet.png" },
-    { ...t.rentals.items.quad, slug: "quad", image: "/quad.png" },
+    { ...t.rentals.items.car, slug: "car", image: "/car11.png" },
+    { ...t.rentals.items.jet, slug: "jet", image: "/jet1.png" },
+    { ...t.rentals.items.quad, slug: "quad", image: "/quad1.png" },
   ];
   const testimonials = t.reviews.items;
   return (
@@ -62,9 +62,9 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div className="max-w-xl">
-              <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">
-                <span className="font-display text-muted-soft">01</span>
-                <span className="h-px w-8 bg-[#FFC300]/40" />
+              <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">
+                <span className="font-display text-[#0057B8]">01</span>
+                <span className="h-px w-8 bg-[#FFD100]/40" />
                 {t.services.eyebrow}
               </p>
               <h2 className="mt-5 font-display text-4xl font-normal leading-[1.1] text-fg sm:text-5xl">
@@ -72,13 +72,13 @@ export default function Page() {
               </h2>
             </div>
             <a href="/services"
-              className="inline-flex items-center gap-2 border-b border-[#FFC300]/60 pb-1 text-[11px] font-semibold uppercase tracking-[.18em] text-[#FFC300] transition hover:border-[#FFC300] hover:gap-3">
+              className="inline-flex items-center gap-2 border-b border-[#FFD100]/60 pb-1 text-[11px] font-semibold uppercase tracking-[.18em] text-[#FFD100] transition hover:border-[#FFD100] hover:gap-3">
               {t.services.viewAll}
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </a>
           </div>
 
-          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:mt-16 lg:grid-cols-3">
+          <div className="mt-12 grid grid-cols-3 gap-2 sm:gap-4 lg:mt-16">
             {services.map((s, i) => (
               <ServiceCard key={s.title} title={s.title} description={s.desc} slug={s.slug} image={s.image} index={i + 1} />
             ))}
@@ -90,9 +90,9 @@ export default function Page() {
       <section className="border-b border-border bg-surface-2 py-20 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="max-w-xl">
-            <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">
-              <span className="font-display text-muted-soft">02</span>
-              <span className="h-px w-8 bg-[#FFC300]/40" />
+            <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">
+              <span className="font-display text-[#0057B8]">02</span>
+              <span className="h-px w-8 bg-[#FFD100]/40" />
               {t.rentals.eyebrow}
             </p>
             <h2 className="mt-5 font-display text-4xl font-normal leading-[1.1] text-fg sm:text-5xl">
@@ -102,7 +102,7 @@ export default function Page() {
               {t.rentals.subtitle}
             </p>
           </div>
-          <div className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:mt-16">
+          <div className="mt-12 grid grid-cols-3 gap-2 sm:gap-4 lg:mt-16">
             {rentals.map((r, i) => (
               <ServiceCard key={r.title} title={r.title} description={r.desc} slug={r.slug} image={r.image} index={i + 1} imagePosition="object-bottom" />
             ))}
@@ -115,13 +115,13 @@ export default function Page() {
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">
-                <span className="font-display text-muted-soft">03</span>
-                <span className="h-px w-8 bg-[#FFC300]/40" />
+              <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">
+                <span className="font-display text-[#0057B8]">03</span>
+                <span className="h-px w-8 bg-[#FFD100]/40" />
                 {t.why.eyebrow}
               </p>
               <h3 className="mt-5 font-display text-4xl font-normal leading-[1.1] text-fg sm:text-5xl">
-                {t.why.title1} <span className="italic text-fg/60">{t.why.title2}</span>
+                {t.why.title1} <span className="italic text-[#0057B8]">{t.why.title2}</span>
               </h3>
               <p className="mt-6 text-sm leading-7 text-muted">
                 {t.why.body}
@@ -147,13 +147,13 @@ export default function Page() {
       <section id="reviews" className="border-b border-border bg-surface-2 py-20 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <div className="max-w-xl">
-            <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">
-              <span className="font-display text-muted-soft">04</span>
-              <span className="h-px w-8 bg-[#FFC300]/40" />
+            <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">
+              <span className="font-display text-[#0057B8]">04</span>
+              <span className="h-px w-8 bg-[#FFD100]/40" />
               {t.reviews.eyebrow}
             </p>
             <h2 className="mt-5 font-display text-4xl font-normal leading-[1.1] text-fg sm:text-5xl">
-              {t.reviews.heading1} <span className="italic text-fg/60">{t.reviews.heading2}</span>
+              {t.reviews.heading1} <span className="italic text-[#0057B8]">{t.reviews.heading2}</span>
             </h2>
           </div>
           <div className="mt-12 grid gap-4 sm:mt-16 md:grid-cols-3">
@@ -167,55 +167,61 @@ export default function Page() {
       {/* ═══════ CTA ═══════ */}
       <section className="py-20 sm:py-28 lg:py-36">
         <div className="mx-auto max-w-6xl px-5 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
-              <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">
-                <span className="font-display text-muted-soft">05</span>
-                <span className="h-px w-8 bg-[#FFC300]/40" />
-                {t.cta.badge}
-              </p>
-              <h2 className="mt-5 font-display text-4xl font-normal leading-[1.05] text-fg sm:text-5xl lg:text-6xl">
-                {t.cta.title1} <span className="italic text-fg/60">{t.cta.title2}</span>
-              </h2>
-              <p className="mt-6 max-w-xl text-sm leading-7 text-muted">
-                {t.cta.body}
-              </p>
+          <div className="relative overflow-hidden rounded-sm bg-[#002D72] p-8 dark:bg-[#0057B8] sm:p-12 lg:p-16">
+            {/* subtle radial glow */}
+            <div className="pointer-events-none absolute -top-32 -right-32 h-96 w-96 rounded-full bg-[#0057B8] opacity-30 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-[#FFD100] opacity-10 blur-3xl" />
 
-              <div className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-8 sm:max-w-md">
-                <div>
-                  <div className="font-display text-3xl text-fg">500+</div>
-                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-[.18em] text-muted-soft">{t.cta.stats.jobs}</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl text-fg">5.0</div>
-                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-[.18em] text-muted-soft">{t.cta.stats.rating}</div>
-                </div>
-                <div>
-                  <div className="font-display text-3xl text-fg">24h</div>
-                  <div className="mt-2 text-[10px] font-semibold uppercase tracking-[.18em] text-muted-soft">{t.cta.stats.response}</div>
+            <div className="relative grid gap-10 lg:grid-cols-12 lg:gap-16">
+              <div className="lg:col-span-7">
+                <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">
+                  <span className="font-display text-white/70">05</span>
+                  <span className="h-px w-8 bg-[#FFD100]/60" />
+                  {t.cta.badge}
+                </p>
+                <h2 className="mt-5 font-display text-4xl font-normal leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+                  {t.cta.title1} <span className="italic text-[#FFD100]">{t.cta.title2}</span>
+                </h2>
+                <p className="mt-6 max-w-xl text-sm leading-7 text-white/75">
+                  {t.cta.body}
+                </p>
+
+                <div className="mt-10 grid grid-cols-3 gap-6 border-t border-white/15 pt-8 sm:max-w-md">
+                  <div>
+                    <div className="font-display text-3xl text-white">500+</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[.18em] text-white/60">{t.cta.stats.jobs}</div>
+                  </div>
+                  <div>
+                    <div className="font-display text-3xl text-white">5.0</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[.18em] text-white/60">{t.cta.stats.rating}</div>
+                  </div>
+                  <div>
+                    <div className="font-display text-3xl text-white">24h</div>
+                    <div className="mt-2 text-[10px] font-semibold uppercase tracking-[.18em] text-white/60">{t.cta.stats.response}</div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="flex flex-col justify-end gap-4 lg:col-span-5">
-              <a
-                href="https://wa.me/59995112097"
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 rounded-sm bg-[#FFC300] px-7 py-4 text-sm font-semibold tracking-wide text-black transition hover:bg-[#FFD54F]"
-              >
-                {t.cta.whatsapp}
-                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
-              </a>
-              <a
-                href="tel:+59995112097"
-                className="inline-flex items-center justify-center gap-2.5 rounded-sm border border-fg/40 px-7 py-4 text-sm font-semibold tracking-wide text-fg transition hover:border-fg/60"
-              >
-                +5999 511 2097
-              </a>
-              <p className="mt-1 text-center text-[11px] leading-relaxed text-muted-soft">
-                {t.cta.disclaimer}
-              </p>
+              <div className="flex flex-col justify-end gap-4 lg:col-span-5">
+                <a
+                  href="https://wa.me/59995112097"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-sm bg-[#FFD100] px-7 py-4 text-sm font-semibold tracking-wide text-[#002D72] transition hover:bg-[#FFE166]"
+                >
+                  {t.cta.whatsapp}
+                  <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                </a>
+                <a
+                  href="tel:+59995112097"
+                  className="inline-flex items-center justify-center gap-2.5 rounded-sm border border-white/40 px-7 py-4 text-sm font-semibold tracking-wide text-white transition hover:border-white"
+                >
+                  +5999 511 2097
+                </a>
+                <p className="mt-1 text-center text-[11px] leading-relaxed text-white/55">
+                  {t.cta.disclaimer}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -258,7 +264,7 @@ function VideoCard({ locations, caption }: { locations: string[]; caption: strin
             aria-label="Play video"
             className="absolute inset-0 flex items-center justify-center bg-black/30 transition hover:bg-black/20"
           >
-            <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#FFC300] text-black shadow-xl shadow-yellow-500/40 transition hover:scale-110 sm:h-28 sm:w-28">
+            <span className="flex h-24 w-24 items-center justify-center rounded-full bg-[#FFD100] text-black shadow-xl shadow-yellow-500/40 transition hover:scale-110 sm:h-28 sm:w-28">
               <svg viewBox="0 0 24 24" className="ml-1 h-10 w-10 sm:h-12 sm:w-12" fill="currentColor">
                 <path d="M8 5v14l11-7z" />
               </svg>

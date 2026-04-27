@@ -6,11 +6,11 @@ import { useTheme } from "@/lib/theme";
 
 /* ─────────────────── COLORS ─────────────────── */
 const C = {
-  bg: "#0B0F1A",
-  card: "#111627",
-  card2: "#161C2E",
-  gold: "#FFC300",
-  goldHover: "#FFD54F",
+  bg: "#050B16",
+  card: "#0B1530",
+  card2: "#0F1A3A",
+  gold: "#FFD100",
+  goldHover: "#FFE166",
   green: "#25D366",
   text: "#CBD5E1",
   dim: "#64748B",
@@ -33,7 +33,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#FFC300] font-display text-[12px] font-semibold tracking-tight text-black">DLH</span>
+          <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#002D72] font-display text-[12px] font-semibold tracking-tight text-[#FFD100]">DLH</span>
           <span className="hidden text-[11px] font-medium uppercase leading-tight tracking-[.18em] text-fg/90 sm:block">Diligence Local Handyman</span>
         </Link>
 
@@ -47,7 +47,7 @@ export function Navbar() {
           <ThemeToggle />
           <LanguageSwitcher />
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="hidden md:inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#FFC300] hover:text-[#FFC300]">
+            className="hidden md:inline-flex items-center gap-2 rounded-sm border border-border px-4 py-2 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#0057B8] hover:text-[#0057B8]">
             <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
           </a>
           <button onClick={() => setOpen(!open)} aria-label="Menu" className="inline-flex h-10 w-10 items-center justify-center rounded-sm border border-border text-fg lg:hidden">
@@ -65,7 +65,7 @@ export function Navbar() {
               className="block border-b border-fg/5 py-3 text-sm font-medium text-fg-soft transition hover:text-fg">{l.label}</a>
           ))}
           <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-            className="mt-5 flex items-center justify-center gap-2 rounded-sm bg-[#FFC300] py-3 text-sm font-semibold text-black">
+            className="mt-5 flex items-center justify-center gap-2 rounded-sm bg-[#FFD100] py-3 text-sm font-semibold text-black">
             <WhatsAppSVG cls="h-4 w-4" /> +5999 511 2097
           </a>
         </div>
@@ -149,32 +149,24 @@ export function Hero() {
     <section id="home" className="relative bg-bg">
       <div className="relative w-full overflow-hidden">
         <img
-          src="/hero.png"
+          src="/hero111.png"
           alt="Diligence Local Handyman"
-          className="w-full h-auto min-h-[360px] sm:min-h-[420px] object-cover object-center"
+          className="w-full h-auto min-h-[280px] sm:min-h-[420px] object-cover object-center"
         />
+        {/* Bottom fade so right-aligned text remains legible */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg via-bg/80 to-transparent" />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/70 to-transparent pointer-events-none" />
-
-        <div className="absolute bottom-0 left-0 right-0 z-10 px-5 pb-8 sm:left-auto sm:w-1/2 sm:px-8 sm:pb-14 lg:px-16 lg:pb-20 sm:text-right">
-          <p className="text-[10px] font-semibold uppercase tracking-[.22em] text-fg/70 sm:text-[11px] sm:tracking-[.28em]">{t.hero.eyebrow}</p>
-          <h1 className="mt-4 font-display text-[34px] font-normal leading-[1.05] text-fg sm:text-5xl lg:text-[64px]">
-            {t.hero.title1}<br />
-            <span className="italic text-fg/60">{t.hero.title2}</span>
-          </h1>
-          <p className="mt-5 max-w-sm text-sm leading-relaxed text-fg-soft sm:ml-auto">
-            {t.hero.subtitle}
-          </p>
-
-          <div className="mt-7 flex flex-row flex-wrap items-center gap-4 sm:justify-end sm:gap-6">
-            <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-sm bg-[#FFC300] px-5 py-3 text-[12px] font-semibold tracking-wide text-black transition hover:bg-[#FFD54F] sm:px-7 sm:text-[13px]">
-              <WhatsAppSVG cls="h-4 w-4" /> {t.hero.whatsapp}
-            </a>
+        {/* CTAs anchored bottom-right on all devices */}
+        <div className="absolute bottom-0 right-0 z-10 px-5 pb-6 text-right sm:px-8 sm:pb-12 lg:px-16 lg:pb-16">
+          <div className="flex flex-row flex-wrap items-center justify-end gap-4 sm:gap-6">
             <a href="#services"
-              className="inline-flex items-center gap-2 border-b border-fg/60 pb-1 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#FFC300] hover:text-[#FFC300] sm:text-[13px]">
+              className="inline-flex items-center gap-2 border-b border-fg/60 pb-1 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#0057B8] hover:text-[#0057B8] sm:text-[13px]">
               {t.hero.services}
               <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+            </a>
+            <a href="https://wa.me/59995112097" target="_blank" rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-sm bg-[#FFD100] px-5 py-3 text-[12px] font-semibold tracking-wide text-black transition hover:bg-[#FFE166] sm:px-7 sm:text-[13px]">
+              <WhatsAppSVG cls="h-4 w-4" /> {t.hero.whatsapp}
             </a>
           </div>
         </div>
@@ -190,7 +182,7 @@ export function TrustStrip() { return null; }
 export function SectionHeading({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
   return (
     <div className="max-w-3xl">
-      <p className="text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFC300]">{eyebrow}</p>
+      <p className="text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">{eyebrow}</p>
       <h2 className="mt-4 font-display text-3xl font-normal leading-[1.1] text-fg sm:text-5xl">{title}</h2>
       {description && <p className="mt-5 text-base leading-7 text-muted">{description}</p>}
     </div>
@@ -218,10 +210,10 @@ export function ServiceCard({ title, description, image, imagePosition = "object
       href="https://wa.me/59995112097"
       target="_blank"
       rel="noreferrer"
-      className="group flex flex-col overflow-hidden rounded-sm border border-border bg-bg transition hover:-translate-y-0.5 hover:border-[#FFC300]/60 hover:shadow-[0_10px_40px_-12px_rgba(255,195,0,.25)]"
+      className="group flex flex-col overflow-hidden rounded-sm border border-border bg-bg transition hover:-translate-y-0.5 hover:border-[#0057B8]/60 hover:shadow-[0_10px_40px_-12px_rgba(0,87,184,.35)]"
     >
       {image && (
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-surface-2">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-white">
           <img
             src={image}
             alt={title}
@@ -232,7 +224,7 @@ export function ServiceCard({ title, description, image, imagePosition = "object
       <div className="flex flex-1 flex-col p-5 sm:p-6">
         <h3 className="font-display text-lg font-normal leading-snug text-fg sm:text-xl">{title}</h3>
         <p className="mt-2 flex-1 text-[13px] leading-relaxed text-muted">{description}</p>
-        <div className="mt-5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[.18em] text-[#FFC300] transition group-hover:gap-2.5">
+        <div className="mt-5 inline-flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[.18em] text-[#FFD100] transition group-hover:gap-2.5">
           {t.services.learnMore}
           <svg viewBox="0 0 24 24" className="h-2.5 w-2.5" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
         </div>
@@ -268,11 +260,11 @@ export function TestimonialCard({ quote, name }: { quote: string; name: string }
 export function Footer() {
   const { t } = useT();
   return (
-    <footer id="contact" className="relative border-t border-border bg-surface-2 dark:bg-[#060911]">
+    <footer id="contact" className="relative border-t border-border bg-surface-2 dark:bg-[#001E54]">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 sm:gap-12 sm:py-20 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#FFC300] font-display text-[14px] font-semibold tracking-tight text-black">DLH</span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#002D72] font-display text-[14px] font-semibold tracking-tight text-[#FFD100]">DLH</span>
             <span className="font-display text-base text-fg">Diligence Local Handyman</span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-muted">
@@ -297,11 +289,11 @@ export function Footer() {
         <div className="lg:col-span-2">
           <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-fg">{t.footer.company}</p>
           <ul className="space-y-3 text-sm text-muted">
-            <li><Link href="/" className="transition hover:text-[#FFC300]">{t.nav.home}</Link></li>
-            <li><Link href="/services" className="transition hover:text-[#FFC300]">{t.nav.services}</Link></li>
-            <li><a href="/#aboutus" className="transition hover:text-[#FFC300]">{t.nav.about}</a></li>
-            <li><a href="/#reviews" className="transition hover:text-[#FFC300]">{t.nav.reviews}</a></li>
-            <li><a href="/#contact" className="transition hover:text-[#FFC300]">{t.nav.contact}</a></li>
+            <li><Link href="/" className="transition hover:text-[#FFD100]">{t.nav.home}</Link></li>
+            <li><Link href="/services" className="transition hover:text-[#FFD100]">{t.nav.services}</Link></li>
+            <li><a href="/#aboutus" className="transition hover:text-[#FFD100]">{t.nav.about}</a></li>
+            <li><a href="/#reviews" className="transition hover:text-[#FFD100]">{t.nav.reviews}</a></li>
+            <li><a href="/#contact" className="transition hover:text-[#FFD100]">{t.nav.contact}</a></li>
           </ul>
         </div>
 
@@ -309,7 +301,7 @@ export function Footer() {
           <p className="mb-5 text-[11px] font-bold uppercase tracking-[.2em] text-fg">{t.footer.servicesCol}</p>
           <ul className="space-y-3 text-sm text-muted">
             {[t.services.items.repairs.title, t.services.items.painting.title, t.services.items.plumbing.title, t.services.items.electrical.title, t.services.items.furniture.title, t.services.items.ac.title].map((s)=>(
-              <li key={s}><Link href="/services" className="transition hover:text-[#FFC300]">{s}</Link></li>
+              <li key={s}><Link href="/services" className="transition hover:text-[#FFD100]">{s}</Link></li>
             ))}
           </ul>
         </div>
@@ -319,7 +311,7 @@ export function Footer() {
           <ul className="space-y-4 text-sm text-muted">
             <li>
               <a href="tel:+59995112097" className="group flex items-start gap-3 transition hover:text-fg">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFD100] transition group-hover:bg-[#FFD100] group-hover:text-black">
                   <PhoneIcon />
                 </span>
                 <span>
@@ -330,7 +322,7 @@ export function Footer() {
             </li>
             <li>
               <a href="mailto:Lokalhandyman84@gmail.com" className="group flex items-start gap-3 transition hover:text-fg">
-                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFC300] transition group-hover:bg-[#FFC300] group-hover:text-black">
+                <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFD100] transition group-hover:bg-[#FFD100] group-hover:text-black">
                   <MailIcon />
                 </span>
                 <span>
@@ -340,7 +332,7 @@ export function Footer() {
               </a>
             </li>
             <li className="flex items-start gap-3">
-              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFC300]">
+              <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-sm bg-fg/5 text-[#FFD100]">
                 <PinIcon />
               </span>
               <span>
@@ -369,7 +361,7 @@ function SocialIconLink({ href, label, children }: { href: string; label: string
       href={href}
       {...(external ? { target: "_blank", rel: "noreferrer" } : {})}
       aria-label={label}
-      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-fg/[.03] text-muted transition hover:border-[#FFC300] hover:bg-[#FFC300] hover:text-black"
+      className="group inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-fg/[.03] text-muted transition hover:border-[#0057B8] hover:bg-[#0057B8] hover:text-white"
     >
       {children}
     </a>

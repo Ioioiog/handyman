@@ -2,32 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ── Theme tokens ── */
+/* ── Theme tokens (Curaçao flag palette) ── */
 :root {
   --bg: #FAFAF7;
   --surface: #FFFFFF;
   --surface-2: #F2F1EC;
-  --fg: #0B0F1A;
+  --fg: #050B16;
   --fg-soft: #1F2937;
   --muted: #64748B;
   --muted-soft: #94A3B8;
-  --border: rgba(11, 15, 26, 0.10);
-  --border-strong: rgba(11, 15, 26, 0.18);
-  --accent: #B8860B;
-  --accent-soft: #D4A017;
+  --border: rgba(0, 45, 114, 0.12);
+  --border-strong: rgba(0, 45, 114, 0.22);
+  --brand: #002D72;       /* deep Curaçao navy */
+  --brand-2: #0057B8;     /* bright Curaçao blue */
+  --accent: #FFD100;      /* Curaçao yellow */
+  --accent-soft: #FFE166;
 }
 .dark {
-  --bg: #0B0F1A;
-  --surface: #111627;
-  --surface-2: #0E1322;
+  --bg: #002D72;          /* Curaçao deep navy */
+  --surface: #003D8F;     /* elevated card surface */
+  --surface-2: #001E54;   /* deeper section panel */
   --fg: #FFFFFF;
-  --fg-soft: #E5E7EB;
-  --muted: #9CA3AF;
-  --muted-soft: #6B7280;
-  --border: rgba(255, 255, 255, 0.10);
-  --border-strong: rgba(255, 255, 255, 0.18);
-  --accent: #FFC300;
-  --accent-soft: #FFD54F;
+  --fg-soft: #E5EDF8;
+  --muted: #B8C5DB;
+  --muted-soft: #8FA1BF;
+  --border: rgba(255, 255, 255, 0.14);
+  --border-strong: rgba(255, 255, 255, 0.24);
+  --brand: #0057B8;
+  --brand-2: #3D7DD9;
+  --accent: #FFD100;
+  --accent-soft: #FFE166;
 }
 
 html {

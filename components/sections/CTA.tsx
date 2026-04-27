@@ -42,14 +42,14 @@ export default function CTA() {
               <motion.div
                 animate={{
                   boxShadow: [
-                    '0 0 40px rgba(255, 195, 0, 0.4)',
-                    '0 0 80px rgba(255, 195, 0, 0.6)',
-                    '0 0 40px rgba(255, 195, 0, 0.4)',
+                    '0 0 40px rgba(0, 87, 184, 0.4)',
+                    '0 0 80px rgba(0, 87, 184, 0.6)',
+                    '0 0 40px rgba(0, 87, 184, 0.4)',
                   ],
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="absolute inset-0 rounded-full blur-3xl"
-                style={{ background: 'radial-gradient(circle, rgba(255,195,0,0.3) 0%, transparent 70%)' }}
+                style={{ background: 'radial-gradient(circle, rgba(0,87,184,0.3) 0%, transparent 70%)' }}
               />
               
               <motion.div

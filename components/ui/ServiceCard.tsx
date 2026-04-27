@@ -22,7 +22,7 @@ export default function ServiceCard({ image, title, description, index }: Servic
       }}
       className="group relative"
     >
-      <div className="bg-[#141824] border border-accent/20 hover:border-accent/50 rounded-2xl p-6 h-full transition-all duration-500 hover:shadow-[0_0_30px_rgba(255,195,0,0.15)]">
+      <div className="bg-[#141824] border border-accent/20 hover:border-accent/50 rounded-2xl p-6 h-full transition-all duration-500 hover:shadow-[0_0_30px_rgba(0,87,184,0.15)]">
         <motion.div
           whileHover={{ scale: 1.1, y: -5 }}
           transition={{ duration: 0.3 }}
