@@ -157,7 +157,7 @@ export function Hero() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-bg via-bg/80 to-transparent" />
 
         {/* CTAs anchored bottom-right on all devices */}
-        <div className="absolute bottom-0 right-0 z-10 px-5 pb-6 text-right sm:px-8 sm:pb-12 lg:px-16 lg:pb-16">
+        <div className="absolute bottom-0 right-0 z-10 px-5 pb-0 text-right sm:px-8 lg:px-16">
           <div className="flex flex-row flex-wrap items-center justify-end gap-4 sm:gap-6">
             <a href="#services"
               className="inline-flex items-center gap-2 border-b border-fg/60 pb-1 text-[12px] font-semibold tracking-wide text-fg transition hover:border-[#0057B8] hover:text-[#0057B8] sm:text-[13px]">
