@@ -31,7 +31,7 @@ export default function Services() {
     {
       image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=80',
       title: 'Furniture Assembly',
-      description: 'IKEA or custom — fast and precise.',
+      description: 'Flat-pack or custom — fast and precise.',
     },
     {
       image: 'https://images.unsplash.com/photo-1631545806609-c2b0e2f0e4c9?w=200&q=80',
