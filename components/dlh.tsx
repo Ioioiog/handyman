@@ -149,7 +149,7 @@ export function Hero() {
     <section id="home" className="relative bg-bg">
       <div className="relative w-full overflow-hidden">
         <img
-          src="/hero111.png"
+          src="/heroB.png"
           alt="Diligence Local Handyman"
           className="w-full h-auto min-h-[280px] sm:min-h-[420px] object-cover object-center"
         />
