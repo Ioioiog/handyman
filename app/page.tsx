@@ -123,17 +123,36 @@ export default function Page() {
               <h3 className="mt-5 font-display text-4xl font-normal leading-[1.1] text-fg sm:text-5xl">
                 {t.why.title1} <span className="italic text-[#0057B8]">{t.why.title2}</span>
               </h3>
-              <p className="mt-6 text-sm leading-7 text-muted">
-                {t.why.body}
-              </p>
+              <div className="mt-6 space-y-4 text-sm leading-7 text-muted">
+                {t.why.body.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+
+              <h4 className="mt-8 text-[11px] font-semibold uppercase tracking-[.22em] text-[#FFD100]">
+                {t.why.processHeading}
+              </h4>
+              <ul className="mt-4 space-y-3">
+                {t.why.process.map((step) => (
+                  <li key={step} className="flex items-start gap-3 text-sm leading-relaxed text-fg-soft">
+                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#FFD100]" />
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ul>
+
               <ul className="mt-8 space-y-4">
                 {t.why.points.map((p, i) => (
                   <li key={p} className="flex items-start gap-4 border-t border-border pt-4 text-sm text-fg-soft">
-                    <span className="font-display text-xs text-muted-soft">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="font-display text-xs text-[#0057B8]">{String(i + 1).padStart(2, "0")}</span>
                     <span>{p}</span>
                   </li>
                 ))}
               </ul>
+
+              <p className="mt-10 font-display text-lg italic leading-snug text-fg sm:text-xl">
+                {t.why.tagline}
+              </p>
             </div>
 
             <div className="lg:col-span-7">

@@ -33,7 +33,7 @@ type Dict = {
       quad: { title: string; desc: string };
     };
   };
-  why: { eyebrow: string; title1: string; title2: string; body: string; points: string[]; locations: string };
+  why: { eyebrow: string; title1: string; title2: string; body: string[]; processHeading: string; process: string[]; points: string[]; tagline: string; locations: string };
   reviews: {
     eyebrow: string; heading1: string; heading2: string;
     items: { quote: string; name: string }[];
@@ -69,10 +69,10 @@ export const translations: Record<Lang, Dict> = {
     },
     services: {
       eyebrow: "Our Services",
-      heading: "What can we help you with?",
+      heading: "We fix it. You enjoy it.",
       viewAll: "View All Services & Prices",
       items: {
-        repairs: { title: "General Repairs", desc: "Small or large jobs, we fix it right." },
+        repairs: { title: "General Repairs", desc: "Small or large jobs, we fix it right the first time." },
         painting: { title: "Painting", desc: "Interior & exterior with a perfect finish." },
         plumbing: { title: "Plumbing", desc: "From leaks to full installations." },
         electrical: { title: "Electrical Work", desc: "Safe installations, repairs & maintenance." },
@@ -95,8 +95,22 @@ export const translations: Record<Lang, Dict> = {
       eyebrow: "Why Choose Us?",
       title1: "Local. Reliable.",
       title2: "Skilled.",
-      body: "Diligence Local Handyman stands for quality, honesty, and clear communication. We treat your home or business like it's our own.",
-      points: ["Local expertise in Curaçao", "Clear pricing — no surprises", "Fast response times", "Friendly & professional service"],
+      body: [
+        "At Diligence Local Handyman we pride ourselves in quality, honesty, clear communication and turnkey results. We treat your home or business like it's our own.",
+        "People often struggle to find a fast and reliable handyman who pays attention to the small details but we treat every job with the same level of professional Diligence.",
+        "With over 15 years of experience across the construction, mechanical, and maintenance industry, I have seen it all and fixed it all. Diligence Local Handyman holds a track record for customer satisfaction and high quality finishes.",
+        "We specialise in a range of jobs including, but not limited to those mentioned on our website.",
+        "We reside and work in the local community and hold a reputation for rapid response, quality work and a professional attitude. We also provide clear and concise communication bilingually in Papiamentu and English.",
+      ],
+      processHeading: "How we work",
+      process: [
+        "Request a Quote today: We respond within 24 hours.",
+        "The Visit: We arrive on time and respect your property.",
+        "The Work: We handle the sourcing, the labor, and the cleanup.",
+        "The Handover: You walk through the finished result before we leave.",
+      ],
+      points: ["Local expertise in Curaçao", "Clear pricing — no surprises", "Fast response", "Friendly & professional service"],
+      tagline: "At Diligence Local Handyman: We fix it. You enjoy it.",
       locations: "Proudly serving all areas in Curaçao",
     },
     reviews: {
@@ -132,7 +146,7 @@ export const translations: Record<Lang, Dict> = {
     servicesPage: {
       breadcrumb: "Services",
       eyebrow: "All Services",
-      title1: "Everything we do,",
+      title1: "Everything you need,",
       title2: "in one place.",
       subtitle: "Transparent pricing for all our handyman services and rentals in Curaçao. All prices are starting points — WhatsApp us any time for a free, no-obligation estimate.",
       handyHeading: "Home & business repairs",
@@ -165,10 +179,10 @@ export const translations: Record<Lang, Dict> = {
     },
     services: {
       eyebrow: "Nuestros Servicios",
-      heading: "¿En qué podemos ayudarte?",
+      heading: "Nosotros lo arreglamos. Tú lo disfrutas.",
       viewAll: "Ver Todos los Servicios y Precios",
       items: {
-        repairs: { title: "Reparaciones", desc: "Trabajos grandes o pequeños, lo hacemos bien." },
+        repairs: { title: "Reparaciones", desc: "Trabajos grandes o pequeños, lo hacemos bien a la primera." },
         painting: { title: "Pintura", desc: "Interior y exterior con acabado perfecto." },
         plumbing: { title: "Plomería", desc: "Desde fugas hasta instalaciones completas." },
         electrical: { title: "Electricidad", desc: "Instalaciones seguras, reparaciones y mantenimiento." },
@@ -191,8 +205,22 @@ export const translations: Record<Lang, Dict> = {
       eyebrow: "¿Por qué elegirnos?",
       title1: "Local. Confiable.",
       title2: "Profesional.",
-      body: "Diligence Local Handyman significa calidad, honestidad y comunicación clara. Tratamos tu hogar o negocio como si fuera nuestro.",
+      body: [
+        "En Diligence Local Handyman nos enorgullecemos de la calidad, la honestidad, la comunicación clara y los resultados llave en mano. Tratamos tu hogar o negocio como si fuera el nuestro.",
+        "A menudo es difícil encontrar un handyman rápido y confiable que cuide los pequeños detalles, pero nosotros tratamos cada trabajo con el mismo nivel de Diligencia profesional.",
+        "Con más de 15 años de experiencia en construcción, mecánica y mantenimiento, lo hemos visto todo y lo hemos arreglado todo. Diligence Local Handyman cuenta con un historial de satisfacción del cliente y acabados de alta calidad.",
+        "Nos especializamos en una amplia gama de trabajos, incluyendo — pero no limitándonos a — los mencionados en nuestro sitio web.",
+        "Vivimos y trabajamos en la comunidad local y contamos con una reputación de respuesta rápida, trabajo de calidad y actitud profesional. También brindamos comunicación clara y concisa, de forma bilingüe en papiamento e inglés.",
+      ],
+      processHeading: "Cómo trabajamos",
+      process: [
+        "Solicita un presupuesto hoy: Respondemos en menos de 24 horas.",
+        "La Visita: Llegamos puntualmente y respetamos tu propiedad.",
+        "El Trabajo: Nos encargamos de los materiales, la mano de obra y la limpieza.",
+        "La Entrega: Recorres el trabajo terminado antes de que nos vayamos.",
+      ],
       points: ["Experiencia local en Curazao", "Precios claros — sin sorpresas", "Respuesta rápida", "Servicio amable y profesional"],
+      tagline: "En Diligence Local Handyman: Nosotros lo arreglamos. Tú lo disfrutas.",
       locations: "Atendemos todas las zonas de Curazao",
     },
     reviews: {
@@ -228,7 +256,7 @@ export const translations: Record<Lang, Dict> = {
     servicesPage: {
       breadcrumb: "Servicios",
       eyebrow: "Todos los Servicios",
-      title1: "Todo lo que hacemos,",
+      title1: "Todo lo que necesitas,",
       title2: "en un solo lugar.",
       subtitle: "Precios transparentes para todos nuestros servicios y alquileres en Curazao. Todos los precios son puntos de partida — escríbenos por WhatsApp para un presupuesto gratis.",
       handyHeading: "Reparaciones para hogar y negocio",
@@ -261,10 +289,10 @@ export const translations: Record<Lang, Dict> = {
     },
     services: {
       eyebrow: "Onze Diensten",
-      heading: "Waarmee kunnen we u helpen?",
+      heading: "Wij repareren het. U geniet ervan.",
       viewAll: "Bekijk Alle Diensten & Prijzen",
       items: {
-        repairs: { title: "Reparaties", desc: "Kleine of grote klussen, wij doen het goed." },
+        repairs: { title: "Reparaties", desc: "Kleine of grote klussen, in één keer goed gedaan." },
         painting: { title: "Schilderwerk", desc: "Binnen en buiten met een perfecte afwerking." },
         plumbing: { title: "Loodgieterij", desc: "Van lekkages tot volledige installaties." },
         electrical: { title: "Elektra", desc: "Veilige installaties, reparaties en onderhoud." },
@@ -287,8 +315,22 @@ export const translations: Record<Lang, Dict> = {
       eyebrow: "Waarom Kiezen Voor Ons?",
       title1: "Lokaal. Betrouwbaar.",
       title2: "Vakkundig.",
-      body: "Diligence Local Handyman staat voor kwaliteit, eerlijkheid en duidelijke communicatie. We behandelen uw huis of bedrijf als ons eigen.",
-      points: ["Lokale expertise op Curaçao", "Duidelijke prijzen — geen verrassingen", "Snelle reactietijden", "Vriendelijk & professioneel"],
+      body: [
+        "Bij Diligence Local Handyman zijn wij trots op kwaliteit, eerlijkheid, duidelijke communicatie en kant-en-klare resultaten. We behandelen uw huis of bedrijf als ons eigen.",
+        "Veel mensen vinden het lastig om een snelle en betrouwbare klusjesman te vinden die oog heeft voor de details, maar wij behandelen elke klus met dezelfde professionele Diligence.",
+        "Met meer dan 15 jaar ervaring in de bouw, techniek en onderhoud heb ik alles gezien en alles opgelost. Diligence Local Handyman heeft een staat van dienst van klanttevredenheid en hoogwaardige afwerking.",
+        "Wij zijn gespecialiseerd in een breed scala aan klussen, inclusief — maar niet beperkt tot — wat er op onze website staat.",
+        "Wij wonen en werken in de lokale gemeenschap en staan bekend om snelle reactie, vakwerk en een professionele houding. Wij communiceren ook helder en bondig — tweetalig in Papiaments en Engels.",
+      ],
+      processHeading: "Zo werken wij",
+      process: [
+        "Vraag vandaag een offerte aan: We reageren binnen 24 uur.",
+        "Het Bezoek: We komen op tijd en respecteren uw eigendom.",
+        "Het Werk: Wij regelen materialen, arbeid en de opruiming.",
+        "De Oplevering: U loopt het eindresultaat door voordat we vertrekken.",
+      ],
+      points: ["Lokale expertise op Curaçao", "Duidelijke prijzen — geen verrassingen", "Snelle reactie", "Vriendelijk & professioneel"],
+      tagline: "Bij Diligence Local Handyman: Wij repareren het. U geniet ervan.",
       locations: "Wij bedienen alle gebieden van Curaçao",
     },
     reviews: {
@@ -324,7 +366,7 @@ export const translations: Record<Lang, Dict> = {
     servicesPage: {
       breadcrumb: "Diensten",
       eyebrow: "Alle Diensten",
-      title1: "Alles wat we doen,",
+      title1: "Alles wat u nodig heeft,",
       title2: "op één plek.",
       subtitle: "Transparante prijzen voor al onze diensten en verhuur op Curaçao. Alle prijzen zijn richtprijzen — WhatsApp ons altijd voor een gratis, vrijblijvende offerte.",
       handyHeading: "Reparaties voor huis & bedrijf",
@@ -357,10 +399,10 @@ export const translations: Record<Lang, Dict> = {
     },
     services: {
       eyebrow: "Nos Servisionan",
-      heading: "Kiko nos por yuda bo ku?",
+      heading: "Nos ta drecha. Bo ta gosa.",
       viewAll: "Mira Tur Servisio i Preis",
       items: {
-        repairs: { title: "Drechamentu General", desc: "Trabou chikí of grandi, nos ta hasi bon." },
+        repairs: { title: "Drechamentu General", desc: "Trabou chikí of grandi, nos ta hasi bon di promé biaha." },
         painting: { title: "Pintura", desc: "Paden i pafó ku un akabamentu perfekto." },
         plumbing: { title: "Plombería", desc: "Di lek te instalashon kompleto." },
         electrical: { title: "Trabou Elèktriko", desc: "Instalashon sigur, drechamentu i mantenshon." },
@@ -383,8 +425,22 @@ export const translations: Record<Lang, Dict> = {
       eyebrow: "Pakiko Skohe Nos?",
       title1: "Lokal. Konfiabel.",
       title2: "Ekspert.",
-      body: "Diligence Local Handyman ta nifiká kalidat, onestidat i komunikashon kla. Nos ta trata bo kas of negoshi manera ta di nos.",
+      body: [
+        "Na Diligence Local Handyman nos ta orguyoso di kalidat, onestidat, komunikashon kla i resultado kompleto. Nos ta trata bo kas of negoshi manera ta di nos.",
+        "Hopi biaha ta difísil pa haya un handyman rápido i konfiabel ku ta presta atenshon na e detayenan chikitu, pero nos ta trata kada trabou ku e mesun nivel di Diligence profesional.",
+        "Ku mas ku 15 aña di eksperensia den konstrukshon, mekánika i mantenshon, mi a wak tur kos i drecha tur kos. Diligence Local Handyman tin un istoria di satisfakshon di kliente i akabamentu di altu kalidat.",
+        "Nos ta espesialisá den un variedat di trabou, inkluyendo — pero no limitá na — esnan menshoná riba nos sitio web.",
+        "Nos ta biba i traha den e komunidat lokal i tin un reputashon di reakshon rápido, trabou di kalidat i aktitut profesional. Tambe nos ta komuniká kla i konsiso, bilingual na Papiamentu i Ingles.",
+      ],
+      processHeading: "Kon nos ta traha",
+      process: [
+        "Pidi un presupuesto awe: Nos ta kontestá den 24 ora.",
+        "E Bishita: Nos ta yega na ora i respetá bo propiedat.",
+        "E Trabou: Nos ta enkargá nos di material, trabou i limpiamentu.",
+        "E Entrega: Bo ta wak e resultado kabá promé nos sali.",
+      ],
       points: ["Eksperensia lokal na Kòrsou", "Preis kla — sin sorpresa", "Tempu di reakshon rápido", "Servisio amigable i profesional"],
+      tagline: "Na Diligence Local Handyman: Nos ta drecha. Bo ta gosa.",
       locations: "Nos ta sirbi tur área di Kòrsou",
     },
     reviews: {
@@ -420,7 +476,7 @@ export const translations: Record<Lang, Dict> = {
     servicesPage: {
       breadcrumb: "Servisio",
       eyebrow: "Tur Servisio",
-      title1: "Tur loke nos ta hasi,",
+      title1: "Tur loke bo tin mester,",
       title2: "den un solo lugá.",
       subtitle: "Preis transparente pa tur nos servisio i alkiler na Kòrsou. Tur preis ta punto di salida — mandá WhatsApp pa un presupuesto grátis.",
       handyHeading: "Drechamentu pa kas i negoshi",
