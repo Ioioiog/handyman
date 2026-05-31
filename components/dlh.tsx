@@ -33,8 +33,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-border bg-bg/95 backdrop-blur-xl">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-5 lg:px-8">
         <Link href="/" className="flex items-center gap-2.5">
-          <span className="flex h-8 w-8 items-center justify-center rounded-sm bg-[#002D72] font-display text-[12px] font-semibold tracking-tight text-[#FFD100]">DLH</span>
-          <span className="hidden text-[11px] font-medium uppercase leading-tight tracking-[.18em] text-fg/90 sm:block">Diligence Local Handyman</span>
+          <span className="text-[11px] font-medium uppercase leading-tight tracking-[.18em] text-fg/90 sm:block">Diligence Local Handyman</span>
         </Link>
 
         <nav className="hidden items-center gap-8 lg:flex">
@@ -264,7 +263,6 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 sm:grid-cols-2 sm:gap-12 sm:py-20 lg:grid-cols-12 lg:px-8">
         <div className="lg:col-span-4">
           <Link href="/" className="inline-flex items-center gap-2.5">
-            <span className="flex h-10 w-10 items-center justify-center rounded-sm bg-[#002D72] font-display text-[14px] font-semibold tracking-tight text-[#FFD100]">DLH</span>
             <span className="font-display text-base text-fg">Diligence Local Handyman</span>
           </Link>
           <p className="mt-5 max-w-sm text-sm leading-7 text-muted">
